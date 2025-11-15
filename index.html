@@ -57,7 +57,6 @@
     <main class="relative h-screen overflow-hidden">
         
         <!-- 1. Video de Fondo (Simulación de red neuronal/ondas de datos) -->
-        <!-- Usamos un video placeholder de un servicio gratuito que encaja con la estética abstracta y oscura -->
         <video 
             autoplay 
             loop 
@@ -76,13 +75,10 @@
         
         <!-- 
         3. Contenido Central (Logo, Título, Subtítulo) 
-           Usamos flex para centrar todo vertical y horizontalmente.
-           z-20 para estar sobre el video y la capa de superposición.
         -->
         <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-6">
             
             <!-- Logo Placeholder -->
-            <!-- [IMAGEN_LOGO_EQUIPO_RADIAL.svg] - Usamos un placeholder con los colores de la marca -->
             <img 
                 src="https://placehold.co/192x80/000000/00BFFF?text=Equipo+Radial&font=inter" 
                 alt="Logo Equipo Radial" 
@@ -132,7 +128,6 @@
                 </button>
                 
                 <!-- Info "Al Aire" -->
-                <!-- 'truncate' evita que el texto largo rompa el diseño -->
                 <div class="hidden sm:block">
                     <span class="text-white font-medium truncate">Al Aire:</span>
                     <span class="text-gray-300 ml-2 truncate">Despertar Inteligente (IA Mix)</span>
@@ -164,8 +159,7 @@
 
     <!-- 
     ========================================================================
-    CONTENIDO DE RELLENO
-    (Para demostrar el 'sticky' del reproductor al hacer scroll)
+    CONTENIDO DE LA PÁGINA (CON EL IFRAME)
     ========================================================================
     -->
     <div class="min-h-screen bg-[#0A0A0A] p-10">
@@ -174,53 +168,84 @@
         <!-- Iframe de la Radio insertado aquí -->
         <iframe src="https://stream.casthost.net/public/radio_ia_first/history" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 300px; border: 0; border-radius: 8px;">Cargando ...</iframe>
         
-        <!-- Se ha eliminado el texto de placeholder anterior -->
     </div>
 
     <!-- 
     ========================================================================
-    JAVASCRIPT (Placeholders)
+    ELEMENTO DE AUDIO (Stream Real)
+    ========================================================================
+    -->
+    <!-- Este es el reproductor de audio real, oculto, que controlamos con JS -->
+    <audio id="radioStream" preload="none">
+        <!-- URL de tu stream de audio de Casthost -->
+        <source src="https://stream.casthost.net/stream/radio_ia_first" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- 
+    ========================================================================
+    JAVASCRIPT (Conectado al Stream)
     ========================================================================
     -->
     <script>
-        // Estado de reproducción (placeholder). 
-        // En una app real, esto estaría ligado a un objeto Audio().
-        let isPlaying = false;
+        // Obtenemos los elementos del DOM
+        const radioStream = document.getElementById('radioStream');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
         
         /**
          * Alterna el estado de Play/Pause y actualiza la UI del botón.
          */
         function togglePlay() {
-            const playIcon = document.getElementById('playIcon');
-            const pauseIcon = document.getElementById('pauseIcon');
-            
-            if (isPlaying) {
+            // Verifica si el audio está pausado o ha terminado
+            if (radioStream.paused || radioStream.ended) {
+                // Lógica para REPRODUCIR
+                radioStream.play().then(() => {
+                    // Éxito al reproducir
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                    console.log('Audio reproduciendo');
+                }).catch(error => {
+                    // Error al reproducir (ej. autoplay bloqueado)
+                    console.error('Error al reproducir:', error);
+                    // Asegurarse que la UI esté correcta
+                    playIcon.classList.remove('hidden');
+                    pauseIcon.classList.add('hidden');
+                });
+            } else {
                 // Lógica para PAUSAR
+                radioStream.pause();
                 playIcon.classList.remove('hidden');
                 pauseIcon.classList.add('hidden');
                 console.log('Audio pausado');
-                // Ejemplo: audioElement.pause();
-            } else {
-                // Lógica para REPRODUCIR
-                playIcon.classList.add('hidden');
-                pauseIcon.classList.remove('hidden');
-                console.log('Audio reproduciendo');
-                // Ejemplo: audioElement.play();
             }
-            // Invertir el estado
-            isPlaying = !isPlaying;
         }
 
         /**
-         * Ajusta el volumen (placeholder).
+         * Ajusta el volumen (Conectado).
          * @param {number} value - El valor del slider (0-100)
          */
         function setVolume(value) {
-            console.log('Volumen ajustado a:', value);
-            // En una app real:
-            // const volumeLevel = value / 100;
-            // audioElement.volume = volumeLevel;
+            // El volumen de HTML Audio va de 0.0 a 1.0
+            const volumeLevel = value / 100;
+            radioStream.volume = volumeLevel;
+            console.log('Volumen ajustado a:', volumeLevel);
         }
+
+        // Sincronizar el botón si el audio se pausa por otra razón
+        radioStream.onpause = () => {
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+        };
+        radioStream.onplay = () => {
+            playIcon.classList.add('hidden');
+            pauseIcon.classList.remove('hidden');
+        };
+
+        // Inicializar el volumen al valor del slider
+        setVolume(70); // 70 es el valor por defecto que pusimos en el HTML
+
     </script>
     
 </body>
