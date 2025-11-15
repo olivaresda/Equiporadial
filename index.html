@@ -45,6 +45,31 @@
         .animate-fade-in-down {
             animation: fadeInDown 1.2s ease-out forwards;
         }
+
+        /* --- NUEVO: Animación de Ondas Radiales (Ecualizador) --- */
+        @keyframes pulseWave {
+          0%, 100% {
+            transform: scaleY(0.2); /* Altura mínima */
+            opacity: 0.7;
+          }
+          50% {
+            transform: scaleY(1.0); /* Altura máxima */
+            opacity: 1;
+          }
+        }
+
+        .wave-bar {
+            width: 6px; /* Ancho de la barra */
+            height: 100%; /* Altura controlada por el contenedor (h-12) */
+            background-color: #00BFFF; /* Color Neón Azul */
+            border-radius: 2px;
+            /* Animación: 1.3s de duración, infinita, con 'ease-in-out' */
+            animation: pulseWave 1.3s infinite ease-in-out;
+            transform-origin: bottom; /* Crecer desde abajo */
+            /* Efecto de resplandor Neón */
+            box-shadow: 0 0 4px #00BFFF, 0 0 8px #00BFFF;
+        }
+        /* --- FIN DE NUEVO CÓDIGO CSS --- */
     </style>
 </head>
 <body class="text-white">
@@ -56,8 +81,7 @@
     -->
     <main class="relative h-screen overflow-hidden">
         
-        <!-- 1. Video de Fondo (Simulación de red neuronal/ondas de datos) -->
-        <!-- ESTE ES EL BLOQUE QUE PROBABLEMENTE SE BORRÓ -->
+        <!-- 1. Video de Fondo (¡NUEVO VIDEO FUNCIONAL!) -->
         <video 
             autoplay 
             loop 
@@ -66,8 +90,8 @@
             class="absolute top-0 left-0 w-full h-full object-cover z-0"
             poster="https://placehold.co/1920x1080/0A0A0A/1A1A1A?text=Loading+Video..."
         >
-            <!-- [VIDEO_DE_FONDO.mp4] - Este es un placeholder de Mixkit que se ajusta a la descripción -->
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-wave-pattern-background-34300-large.mp4" type="video/mp4">
+            <!-- [VIDEO_DE_FONDO.mp4] - ¡ENLACE ACTUALIZADO! El anterior estaba roto. -->
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-particle-network-animation-2336-large.mp4" type="video/mp4">
             Tu navegador no soporta el tag de video.
         </video>
         <!-- FIN DEL BLOQUE DE VIDEO -->
@@ -75,8 +99,13 @@
         <!-- 2. Capa de superposición oscura para legibilidad -->
         <div class="absolute top-0 left-0 w-full h-full bg-black/60 z-10"></div>
         
+        <!-- 3. ¡NUEVO! Capa de gradiente estético (Toque Tecnológico) -->
+        <!-- Añadimos un gradiente sutil con tus colores de marca -->
+        <div class="absolute top-0 left-0 w-full h-full z-[11] bg-gradient-to-br from-[#00BFFF]/10 via-transparent to-[#FF00FF]/10 opacity-75"></div>
+
         <!-- 
-        3. Contenido Central (Logo, Título, Subtítulo) 
+        4. Contenido Central (Logo, Título, Subtítulo) 
+           Ajustado a z-20 para estar sobre todas las capas de fondo.
         -->
         <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-6">
             
@@ -98,6 +127,24 @@
                 La primera radio IA de Quito. Música, tecnología y finanzas 24/7.
             </p>
             
+            <!-- --- NUEVO: Visualizador de Ondas Radiales (Ecualizador) --- -->
+            <!-- Contenedor de las barras. 'items-end' alinea las barras abajo -->
+            <div class="flex justify-center items-end space-x-2 mt-10 h-12 animate-fade-in-down" style="animation-delay: 0.8s;">
+                <!-- Cada 'wave-bar' tiene un retraso de animación diferente -->
+                <div class="wave-bar" style="animation-delay: 0.1s;"></div>
+                <div class="wave-bar" style="animation-delay: 0.3s;"></div>
+                <!-- Barra de color Magenta para contraste -->
+                <div class="wave-bar" style="animation-delay: 0.2s; background-color: #FF00FF; box-shadow: 0 0 4px #FF00FF, 0 0 8px #FF00FF;"></div>
+                <div class="wave-bar" style="animation-delay: 0.5s;"></div>
+                <div class="wave-bar" style="animation-delay: 0.4s;"></div>
+                <div class="wave-bar" style="animation-delay: 0.2s;"></div>
+                <!-- Barra de color Magenta para contraste -->
+                <div class="wave-bar" style="animation-delay: 0.1s; background-color: #FF00FF; box-shadow: 0 0 4px #FF00FF, 0 0 8px #FF00FF;"></div>
+                <div class="wave-bar" style="animation-delay: 0.3s;"></div>
+                <div class="wave-bar" style="animation-delay: 0.5s;"></div>
+            </div>
+            <!-- --- FIN DEL VISUALIZADOR --- -->
+
         </div>
         
     </main>
