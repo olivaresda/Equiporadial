@@ -119,8 +119,6 @@
         <!-- 1. NUEVO Fondo Animado (100% CSS) -->
         <div class="animated-gradient-bg"></div>
         
-        <!-- 2. Capa de superposición (eliminada, ya no es necesaria) -->
-        
         <!-- 
         3. Contenido Central (Logo, Título, Subtítulo y Ondas) 
            z-10 para estar sobre el fondo
@@ -256,7 +254,8 @@
 
             <!-- Contenedor de Botones de Pestañas -->
             <div class="border-b border-gray-700 mb-6">
-                <nav class="-mb-px flex justify-center space-x-8" aria-label="Tabs">
+                <!-- MODIFICADO: Añadido flex-wrap para mejor responsividad en móviles -->
+                <nav class="-mb-px flex flex-wrap justify-center space-x-6 sm:space-x-8" aria-label="Tabs">
                     
                     <!-- Pestaña 1: Historial de Emisiones (Activa por defecto) -->
                     <button 
@@ -264,16 +263,25 @@
                         onclick="openTab('historial')" 
                         class="tab-button border-[#00BFFF] text-[#00BFFF] whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg"
                     >
-                        Historial de Emisiones
+                        Historial
                     </button>
                     
-                    <!-- Pestaña 2: Quiénes Somos (Reemplaza a "Pedir Canción") -->
+                    <!-- Pestaña 2: Quiénes Somos -->
                     <button 
                         id="tab-btn-quienes-somos" 
                         onclick="openTab('quienes-somos')" 
                         class="tab-button border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg"
                     >
                         Quiénes Somos
+                    </button>
+
+                    <!-- Pestaña 3: Podcasts (NUEVA) -->
+                    <button 
+                        id="tab-btn-podcasts" 
+                        onclick="openTab('podcasts')" 
+                        class="tab-button border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg"
+                    >
+                        Podcasts
                     </button>
 
                 </nav>
@@ -297,6 +305,11 @@
                             Nuestra programación 24/7 fusiona música de vanguardia generada por IA con insights esenciales sobre tecnología, finanzas y deportes, ofreciendo una experiencia auditiva premium tanto para tu vida personal como para impulsar tu negocio.
                         </p>
                     </div>
+                </div>
+
+                <!-- Contenido Pestaña 3: Podcasts (NUEVA, oculta por defecto) -->
+                <div id="tab-content-podcasts" class="tab-content hidden">
+                    <iframe src="https://stream.casthost.net/public/radio_ia_first/podcasts?embed=true" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 800px !important; border: 0; border-radius: 8px;">Cargando ...</iframe>
                 </div>
             </div>
 
@@ -357,17 +370,19 @@
         // Almacenamos las pestañas y contenidos para evitar buscarlos en el DOM cada vez
         const tabContents = {
             'historial': document.getElementById('tab-content-historial'),
-            'quienes-somos': document.getElementById('tab-content-quienes-somos')
+            'quienes-somos': document.getElementById('tab-content-quienes-somos'),
+            'podcasts': document.getElementById('tab-content-podcasts') // <-- AÑADIDO
         };
         
         const tabButtons = {
             'historial': document.getElementById('tab-btn-historial'),
-            'quienes-somos': document.getElementById('tab-btn-quienes-somos')
+            'quienes-somos': document.getElementById('tab-btn-quienes-somos'),
+            'podcasts': document.getElementById('tab-btn-podcasts') // <-- AÑADIDO
         };
 
         /**
          * Cambia la pestaña visible.
-         * @param {'historial' | 'quienes-somos'} tabId El ID de la pestaña a mostrar
+         * @param {'historial' | 'quienes-somos' | 'podcasts'} tabId El ID de la pestaña a mostrar // <-- MODIFICADO
          */
         function openTab(tabId) {
             // Ocultar todos los contenidos
