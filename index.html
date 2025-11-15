@@ -183,8 +183,8 @@
                 </div>
             </div>
             
-            <!-- Derecha: Controles de Volumen -->
-            <div class="flex items-center space-x-2">
+            <!-- Derecha: Controles de Volumen y Donación -->
+            <div class="flex items-center space-x-3 md:space-x-4">
                 <!-- Icono de Volumen -->
                 <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.43 8.35a1 1 0 00-1.06-.27l-2.02.68a1 1 0 00-.7.92v2.84a1 1 0 00.94 1l2.02-.68a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-1.01.34a.17.17 0 01-.14.15v-.65a1 1 0 00-.7-.92l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92v-2.84a1 1 0 00-.94-1l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92v-2.84a1 1 0 00-1.5-.87l-3.35 2.23a1 1 0 00-.5.87v4.54a1 1 0 001.5.87l3.35-2.23a1 1 0 00.5-.87V8.92a1 1 0 00-.7-.92l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92V6.03a1 1 0 00-1-1H7a1 1 0 00-1 1v.03a1 1 0 001 1h1a1 1 0 001-1V4a1 1 0 00-1-1H7z"></path>
@@ -201,6 +201,16 @@
                     onchange="setVolume(event.target.value)"
                     aria-label="Control de volumen"
                 >
+
+                <!-- 
+                  ============================================================
+                  Botón de Donación (Apoyar) ELIMINADO
+                  Lo hemos movido a la sección de "Interacción Radial"
+                  para mantener el footer limpio.
+                  ============================================================
+                -->
+                <!-- ========================================================== -->
+
             </div>
             
         </div>
@@ -211,12 +221,87 @@
     CONTENIDO DE LA PÁGINA (CON EL IFRAME)
     ========================================================================
     -->
+    <!-- 
+      MODIFICADO:
+      Convertimos la sección de contenido en un sistema de Pestañas (Tabs)
+      para alojar el 'Historial' y el 'Formulario de Pedidos' sin
+      sobrecargar la interfaz.
+    -->
     <div class="min-h-screen bg-[#0A0A0A] p-10">
-        <h2 class="text-3xl font-bold mb-6">Historial de Emisiones</h2>
-        
-        <!-- Iframe de la Radio insertado aquí -->
-        <iframe src="https://stream.casthost.net/public/radio_ia_first/history" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 300px; border: 0; border-radius: 8px;">Cargando ...</iframe>
-        
+        <!-- Contenedor centrado para las pestañas -->
+        <div class="max-w-4xl mx-auto">
+
+            <!-- Título de la Sección -->
+            <h2 class="text-3xl font-bold mb-6 text-center">Interacción Radial</h2>
+
+            <!-- 
+              ============================================================
+              NUEVO: Botón de Donación (Estilo Outline)
+              ============================================================
+            -->
+            <div class="flex justify-center mb-10">
+                <a 
+                    href="https://ko-fi.com/H2H11OHEZ7" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="border-2 border-[#00BFFF] text-[#00BFFF] py-3 px-8 rounded-lg font-medium text-lg transition-colors duration-300 ease-in-out hover:bg-[#00BFFF] hover:text-[#0A0A0A] hover:shadow-[0_0_15px_#00BFFF] flex items-center justify-center"
+                    title="Apoya la radio con una donación"
+                >
+                    <!-- 
+                      NUEVO: Icono SVG de Ko-fi (taza de café)
+                      Se colorea automáticamente con el texto (text-[#00BFFF])
+                    -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M544 0H96C82.7 0 72 10.7 72 24v192c0 13.3 10.7 24 24 24h32v160c0 53 43 96 96 96h16c17.7 0 32-14.3 32-32s-14.3-32-32-32h-16c-17.7 0-32-14.3-32-32V240h160v160c0 17.7-14.3 32-32 32h-16c-17.7 0-32 14.3-32 32s14.3 32 32 32h16c53 0 96-43 96-96V240h32c13.3 0 24-10.7 24-24V24c0-13.3-10.7-24-24-24zM40 464h496c13.3 0 24.1-10.8 24-24.1C559.4 425.8 548.2 416 535.9 416H40.1C27.8 416 16.6 425.8 16 439.9c-.1 13.3 10.7 24.1 24 24.1z"></path>
+                    </svg>
+                    
+                    <!-- Texto del botón, con un margen a la izquierda -->
+                    <span class="ml-3">Apoyar el Proyecto</span>
+                </a>
+            </div>
+            <!-- ========================================================== -->
+
+
+            <!-- Contenedor de Botones de Pestañas -->
+            <div class="border-b border-gray-700 mb-6">
+                <nav class="-mb-px flex justify-center space-x-8" aria-label="Tabs">
+                    
+                    <!-- Pestaña 1: Historial (Activa por defecto) -->
+                    <button 
+                        id="tab-btn-historial" 
+                        onclick="openTab('historial')" 
+                        class="tab-button border-[#00BFFF] text-[#00BFFF] whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg"
+                    >
+                        Historial de Emisiones
+                    </button>
+                    
+                    <!-- Pestaña 2: Pedidos (Inactiva por defecto) -->
+                    <button 
+                        id="tab-btn-pedidos" 
+                        onclick="openTab('pedidos')" 
+                        class="tab-button border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg"
+                    >
+                        Pedir Canción
+                    </button>
+
+                </nav>
+            </div>
+
+            <!-- Contenedor de Contenido de Pestañas -->
+            <div>
+                <!-- Panel 1: Historial (Visible por defecto) -->
+                <div id="tab-content-historial" class="tab-content block">
+                    <iframe src="https://stream.casthost.net/public/radio_ia_first/history" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 300px; border: 0; border-radius: 8px;">Cargando ...</iframe>
+                </div>
+                
+                <!-- Panel 2: Pedidos (Oculto por defecto) -->
+                <div id="tab-content-pedidos" class="tab-content hidden">
+                    <!-- Iframe de Pedidos con min-height: 850px -->
+                    <iframe src="https://stream.casthost.net/public/radio_ia_first/embed-requests" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 850px; border: 0; border-radius: 8px;">Cargando ...</iframe>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- 
@@ -294,6 +379,38 @@
 
         // Inicializar el volumen al valor del slider
         setVolume(70); // 70 es el valor por defecto que pusimos en el HTML
+
+
+        // --- NUEVO: Lógica para el sistema de Pestañas ---
+
+        // Estilos de clase para activo/inactivo (basado en Tailwind)
+        const activeTabClasses = ['border-[#00BFFF]', 'text-[#00BFFF]'];
+        const inactiveTabClasses = ['border-transparent', 'text-gray-500', 'hover:text-gray-300', 'hover:border-gray-500'];
+
+        /**
+         * Maneja el cambio entre pestañas
+         * @param {string} tabName - 'historial' o 'pedidos'
+         */
+        function openTab(tabName) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Desactivar todos los botones
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove(...activeTabClasses);
+                button.classList.add(...inactiveTabClasses);
+            });
+
+            // Activar el contenido y botón correctos
+            document.getElementById(`tab-content-${tabName}`).classList.remove('hidden');
+            
+            const activeButton = document.getElementById(`tab-btn-${tabName}`);
+            activeButton.classList.remove(...inactiveTabClasses);
+            activeButton.classList.add(...activeTabClasses);
+        }
+        // --- Fin de la lógica de Pestañas ---
 
     </script>
     
