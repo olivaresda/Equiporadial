@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo Radial - El Sonido Inteligente</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles & Tailwind Config -->
+    <style>
+        /* Aplicar la fuente Inter por defecto */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A; /* Fondo base negro profundo */
+        }
+        
+        /* Clases personalizadas para el reproductor */
+        .accent-electric-blue {
+            accent-color: #00BFFF;
+        }
+        .ring-magenta-focus:focus {
+            ring-color: #FF00FF;
+            --tw-ring-offset-shadow: 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color), var(--tw-ring-shadow);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow, 0 0 #0000);
+        }
+
+        /* Animación de entrada sutil para el contenido central */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-down {
+            animation: fadeInDown 1.2s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- 
+    ========================================================================
+    SECCIÓN HERO (100vh)
+    ========================================================================
+    -->
+    <main class="relative h-screen overflow-hidden">
+        
+        <!-- 1. Video de Fondo (Simulación de red neuronal/ondas de datos) -->
+        <!-- Usamos un video placeholder de un servicio gratuito que encaja con la estética abstracta y oscura -->
+        <video 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            class="absolute top-0 left-0 w-full h-full object-cover z-0"
+            poster="https://placehold.co/1920x1080/0A0A0A/1A1A1A?text=Loading+Video..."
+        >
+            <!-- [VIDEO_DE_FONDO.mp4] - Este es un placeholder de Mixkit que se ajusta a la descripción -->
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-wave-pattern-background-34300-large.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
+        
+        <!-- 2. Capa de superposición oscura para legibilidad -->
+        <div class="absolute top-0 left-0 w-full h-full bg-black/60 z-10"></div>
+        
+        <!-- 
+        3. Contenido Central (Logo, Título, Subtítulo) 
+           Usamos flex para centrar todo vertical y horizontalmente.
+           z-20 para estar sobre el video y la capa de superposición.
+        -->
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-6">
+            
+            <!-- Logo Placeholder -->
+            <!-- [IMAGEN_LOGO_EQUIPO_RADIAL.svg] - Usamos un placeholder con los colores de la marca -->
+            <img 
+                src="https://placehold.co/192x80/000000/00BFFF?text=Equipo+Radial&font=inter" 
+                alt="Logo Equipo Radial" 
+                class="w-48 mb-5 animate-fade-in-down"
+                style="animation-delay: 0.2s;"
+            >
+            
+            <!-- Título Principal (H1) -->
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight animate-fade-in-down" style="animation-delay: 0.4s;">
+                El Sonido Inteligente para tu Vida y tu Negocio.
+            </h1>
+            
+            <!-- Subtítulo -->
+            <p class="text-lg md:text-xl text-gray-300 mt-4 max-w-2xl mx-auto animate-fade-in-down" style="animation-delay: 0.6s;">
+                La primera radio IA de Quito. Música, tecnología y finanzas 24/7.
+            </p>
+            
+        </div>
+        
+    </main>
+
+    <!-- 
+    ========================================================================
+    REPRODUCTOR DE AUDIO PERSISTENTE (Sticky Footer Player)
+    ========================================================================
+    -->
+    <footer class="fixed bottom-0 left-0 w-full h-20 md:h-16 bg-black/80 backdrop-blur-md z-50">
+        <div class="h-full max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
+            
+            <!-- Izquierda: Botón Play/Pause e Info "Al Aire" -->
+            <div class="flex items-center space-x-3">
+                <!-- Botón Play/Pause -->
+                <button 
+                    id="playPauseBtn" 
+                    onclick="togglePlay()" 
+                    class="flex-shrink-0 text-[#00BFFF] hover:text-white transition-colors duration-200 rounded-full"
+                    aria-label="Reproducir o pausar"
+                >
+                    <!-- SVG Play (Visible por defecto) -->
+                    <svg id="playIcon" class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A.5.5 0 008 7.618v4.764a.5.5 0 00.555.45l3.67-2.382a.5.5 0 000-.9l-3.67-2.382z" clip-rule="evenodd"></path>
+                    </svg>
+                    <!-- SVG Pause (Oculto por defecto) -->
+                    <svg id="pauseIcon" class="w-10 h-10 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 6a1 1 0 00-1 1v6a1 1 0 102 0V7a1 1 0 00-1-1zm4 0a1 1 0 00-1 1v6a1 1 0 102 0V7a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                
+                <!-- Info "Al Aire" -->
+                <!-- 'truncate' evita que el texto largo rompa el diseño -->
+                <div class="hidden sm:block">
+                    <span class="text-white font-medium truncate">Al Aire:</span>
+                    <span class="text-gray-300 ml-2 truncate">Despertar Inteligente (IA Mix)</span>
+                </div>
+            </div>
+            
+            <!-- Derecha: Controles de Volumen -->
+            <div class="flex items-center space-x-2">
+                <!-- Icono de Volumen -->
+                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.43 8.35a1 1 0 00-1.06-.27l-2.02.68a1 1 0 00-.7.92v2.84a1 1 0 00.94 1l2.02-.68a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-1.01.34a.17.17 0 01-.14.15v-.65a1 1 0 00-.7-.92l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92v-2.84a1 1 0 00-.94-1l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92v-2.84a1 1 0 00-1.5-.87l-3.35 2.23a1 1 0 00-.5.87v4.54a1 1 0 001.5.87l3.35-2.23a1 1 0 00.5-.87V8.92a1 1 0 00-.7-.92l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92V6.03a1 1 0 00-1-1H7a1 1 0 00-1 1v.03a1 1 0 001 1h1a1 1 0 001-1V4a1 1 0 00-1-1H7z"></path>
+                    <path d="M10 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1z"></path>
+                </svg>
+                
+                <!-- Slider de Volumen -->
+                <input 
+                    type="range" 
+                    min="0" 
+                    max="100" 
+                    value="70" 
+                    class="w-20 md:w-24 h-2 bg-gray-600 rounded-full appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black ring-magenta-focus accent-electric-blue"
+                    onchange="setVolume(event.target.value)"
+                    aria-label="Control de volumen"
+                >
+            </div>
+            
+        </div>
+    </footer>
+
+    <!-- 
+    ========================================================================
+    CONTENIDO DE RELLENO
+    (Para demostrar el 'sticky' del reproductor al hacer scroll)
+    ========================================================================
+    -->
+    <div class="min-h-screen bg-[#0A0A0A] p-10">
+        <h2 class="text-3xl font-bold mb-6">Historial de Emisiones</h2>
+        
+        <!-- Iframe de la Radio insertado aquí -->
+        <iframe src="https://stream.casthost.net/public/radio_ia_first/history" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 300px; border: 0; border-radius: 8px;">Cargando ...</iframe>
+        
+        <!-- Se ha eliminado el texto de placeholder anterior -->
+    </div>
+
+    <!-- 
+    ========================================================================
+    JAVASCRIPT (Placeholders)
+    ========================================================================
+    -->
+    <script>
+        // Estado de reproducción (placeholder). 
+        // En una app real, esto estaría ligado a un objeto Audio().
+        let isPlaying = false;
+        
+        /**
+         * Alterna el estado de Play/Pause y actualiza la UI del botón.
+         */
+        function togglePlay() {
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+            
+            if (isPlaying) {
+                // Lógica para PAUSAR
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+                console.log('Audio pausado');
+                // Ejemplo: audioElement.pause();
+            } else {
+                // Lógica para REPRODUCIR
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+                console.log('Audio reproduciendo');
+                // Ejemplo: audioElement.play();
+            }
+            // Invertir el estado
+            isPlaying = !isPlaying;
+        }
+
+        /**
+         * Ajusta el volumen (placeholder).
+         * @param {number} value - El valor del slider (0-100)
+         */
+        function setVolume(value) {
+            console.log('Volumen ajustado a:', value);
+            // En una app real:
+            // const volumeLevel = value / 100;
+            // audioElement.volume = volumeLevel;
+        }
+    </script>
+    
+</body>
+</html>
