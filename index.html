@@ -232,24 +232,50 @@
         <!-- Contenedor centrado para las pestañas -->
         <div class="max-w-4xl mx-auto">
 
-            <!-- Título de la Sección -->
-            <h2 class="text-3xl font-bold mb-6 text-center">Interacción Radial</h2>
+            <!-- Título "Interacción Radial" ELIMINADO -->
 
-            <!-- Botón de Donación (Estilo Outline) -->
-            <div class="flex justify-center mb-10">
-                <a 
-                    href="https://ko-fi.com/H2H11OHEZ7" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    class="border-2 border-[#00BFFF] text-[#00BFFF] py-3 px-8 rounded-lg font-medium text-lg transition-colors duration-300 ease-in-out hover:bg-[#00BFFF] hover:text-[#0A0A0A] hover:shadow-[0_0_15px_#00BFFF] flex items-center justify-center"
-                    title="Apoya la radio con una donación"
-                >
-                    <!-- Icono SVG de Ko-fi (taza de café) -->
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M544 0H96C82.7 0 72 10.7 72 24v192c0 13.3 10.7 24 24 24h32v160c0 53 43 96 96 96h16c17.7 0 32-14.3 32-32s-14.3-32-32-32h-16c-17.7 0-32-14.3-32-32V240h160v160c0 17.7-14.3 32-32 32h-16c-17.7 0-32 14.3-32 32s14.3 32 32 32h16c53 0 96-43 96-96V240h32c13.3 0 24-10.7 24-24V24c0-13.3-10.7-24-24-24zM40 464h496c13.3 0 24.1-10.8 24-24.1C559.4 425.8 548.2 416 535.9 416H40.1C27.8 416 16.6 425.8 16 439.9c-.1 13.3 10.7 24.1 24 24.1z"></path>
-                    </svg>
-                    <span class="ml-3">Apoyar el Proyecto</span>
-                </a>
+            <!-- Botón de Donación ELIMINADO -->
+
+            <!-- NUEVO Formulario de Contacto (Simple) - ELIMINADO DE AQUÍ -->
+            <div class="mb-10 p-6 sm:p-8 bg-gray-900/50 rounded-lg">
+                <h3 class="text-xl font-bold text-center mb-4">Mantente Conectado</h3>
+                <p class="text-center text-gray-300 mb-6">Recibe novedades o contáctanos directamente por WhatsApp.</p>
+                <div class="flex flex-col md:flex-row gap-4">
+                    
+                    <!-- Formulario de Email (simple) -->
+                    <!-- TODO: Conecta esto a tu servicio de email marketing -->
+                    <form class="flex-1 flex flex-col sm:flex-row gap-2" onsubmit="event.preventDefault(); alert('Formulario de email enviado (placeholder)');">
+                        <label for="email-input" class="sr-only">Tu email</label>
+                        <input 
+                            type="email" 
+                            id="email-input"
+                            placeholder="Ingresa tu email" 
+                            required
+                            class="flex-grow bg-gray-800 text-white px-4 py-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#00BFFF] w-full"
+                        >
+                        <button 
+                            type="submit" 
+                            class="bg-[#00BFFF] text-black font-bold py-3 px-6 rounded-lg hover:bg-white transition-colors duration-300"
+                        >
+                            Suscribir
+                        </button>
+                    </form>
+                    
+                    <!-- Botón de WhatsApp -->
+                    <!-- TODO: Reemplaza "TUNUMERO" con tu número de WhatsApp (ej. 593991234567) -->
+                    <a 
+                        href="https://wa.me/TUNUMERO"
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="bg-green-500 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center hover:bg-green-400 transition-colors duration-300"
+                    >
+                        <!-- Icono de WhatsApp SVG -->
+                        <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M.057 24L5.98 22.06c-1.743-2.01-2.79-4.52-2.79-7.16C3.19 7.02 8.43 2 15.03 2s11.84 5.02 11.84 12.9c0 7.88-5.24 12.9-11.84 12.9-2.52 0-4.93-.89-6.9-2.51L.057 24zM8.34 7.08c-.16-.38-.47-.5-.7-.5-.22 0-.44 0-.66.02-.27 0-.7.36-.96.69-.26.33-.87.85-.87 2.07 0 1.22.89 2.89 1.02 3.1.13.2.18.33.3.52.8 1.4 1.96 2.62 3.5 3.48.5.28.8.44.98.56.45.28.87.48 1.3.62.2.06.38.1.58.1.48 0 1.2-.18 1.63-.84.44-.66.8-1.32.96-2.02.16-.7-.06-1.08-.28-1.28-.22-.2-.44-.3-.66-.4-.22-.1-.36-.12-.53-.12-.22 0-.44 0-.6.02-.22.02-.5.12-.76.66-.26.54-.48 1.02-.69 1.28-.2.26-.42.33-.66.2-.24-.13-1.04-.4-1.98-1.22-.73-.64-1.22-1.42-1.35-1.68-.13-.26-.02-.4.1-.52.1-.1.22-.26.33-.38.13-.12.2-.2.3-.3.1-.1.18-.2.23-.33.05-.13.02-.26 0-.38-.02-.12-.5-1.2-.69-1.62z"/>
+                        </svg>
+                        Contactar por WhatsApp
+                    </a>
+                </div>
             </div>
 
             <!-- Contenedor de Botones de Pestañas -->
@@ -275,15 +301,6 @@
                         Quiénes Somos
                     </button>
 
-                    <!-- Pestaña 3: Podcasts (NUEVA) -->
-                    <button 
-                        id="tab-btn-podcasts" 
-                        onclick="openTab('podcasts')" 
-                        class="tab-button border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg"
-                    >
-                        Podcasts
-                    </button>
-
                 </nav>
             </div>
 
@@ -307,14 +324,107 @@
                     </div>
                 </div>
 
-                <!-- Contenido Pestaña 3: Podcasts (NUEVA, oculta por defecto) -->
-                <div id="tab-content-podcasts" class="tab-content hidden">
-                    <iframe src="https://stream.casthost.net/public/radio_ia_first/podcasts?embed=true" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 800px !important; border: 0; border-radius: 8px;">Cargando ...</iframe>
-                </div>
             </div>
 
         </div>
     </div>
+
+    <!-- 
+    ========================================================================
+    NUEVA SECCIÓN B2B (AÑADIDA)
+    ========================================================================
+    -->
+    <div class="bg-[#0A0A0A] pb-20 px-10"> <!-- Continuamos en el fondo oscuro -->
+        <!-- Contenedor centrado -->
+        <div class="max-w-4xl mx-auto">
+            
+            <!-- Título de la Sección -->
+            <h2 class="text-4xl font-bold mb-6 text-center text-gradient-logo">
+                Ecuador Música B2B
+            </h2>
+            <p class="text-center text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
+                Una solución inteligente y legal para el audio de tu negocio.
+            </p>
+
+            <!-- Contenedor de contenido -->
+            <div class="bg-gray-900/50 rounded-lg p-8">
+                <h3 class="text-2xl font-bold text-white mb-4">El Desafío: Música para Negocios en Ecuador</h3>
+                <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                    Si tienes un negocio en Ecuador (restaurante, cafetería, tienda u oficina), sabes que usar música comercial es complicado. Implica gestionar trámites con sociedades de gestión, enfrentar pagos de licencias costosas y la constante incertidumbre de no saber cuánto pagar.
+                </p>
+                <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                    El riesgo de multas por parte de un fiscalizador es real, y navegar el sistema es frustrante y costoso.
+                </p>
+
+                <h3 class="text-2xl font-bold text-white mb-4">La Solución: Equipo Radial B2B</h3>
+                <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                    Con Equipo Radial, te liberas de todo ese estrés. Por una tarifa plana de solo **$12 al mes**, tu negocio obtiene la tranquilidad que necesita:
+                </p>
+                
+                <ul class="list-disc list-inside text-gray-300 text-lg space-y-3 mb-8">
+                    <li>Un <strong class="text-[#00BFFF]">Certificado de Licencia</strong> que acredita el uso de nuestra señal en formato 'free' y libre de pagos a sociedades de gestión.</li>
+                    <li>Acceso a un <strong class="text-[#00BFFF]">número de teléfono de soporte</strong> para que nosotros le expliquemos directamente al fiscalizador que tu música está en regla.</li>
+                    <li>Paz mental y el ahorro de cientos de dólares en licencias tradicionales.</li>
+                </ul>
+
+                <p class="text-white text-xl font-bold text-center mb-6">
+                    Evita multas y complicaciones. Únete a la revolución del audio inteligente.
+                </p>
+
+                <!-- Botón de CTA (Call to Action) B2B - ELIMINADO -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    ========================================================================
+    NUEVA SECCIÓN DE CONTACTO (MOVIDA AL FINAL)
+    ========================================================================
+    -->
+    <div class="bg-[#0A0A0A] pb-20 px-10"> <!-- Conteneder para el formulario de contacto -->
+        <div class="max-w-4xl mx-auto p-6 sm:p-8 bg-gray-900/50 rounded-lg">
+            <h3 class="text-xl font-bold text-center mb-4">Mantente Conectado</h3>
+            <p class="text-center text-gray-300 mb-6">Recibe novedades o contáctanos directamente por WhatsApp.</p>
+            <div class="flex flex-col md:flex-row gap-4">
+                
+                <!-- Formulario de Email (simple) -->
+                <!-- TODO: Conecta esto a tu servicio de email marketing -->
+                <form class="flex-1 flex flex-col sm:flex-row gap-2" onsubmit="event.preventDefault(); alert('Formulario de email enviado (placeholder)');">
+                    <label for="email-input" class="sr-only">Tu email</label>
+                    <input 
+                        type="email" 
+                        id="email-input"
+                        placeholder="Ingresa tu email" 
+                        required
+                        class="flex-grow bg-gray-800 text-white px-4 py-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#00BFFF] w-full"
+                    >
+                    <button 
+                        type="submit" 
+                        class="bg-[#00BFFF] text-black font-bold py-3 px-6 rounded-lg hover:bg-white transition-colors duration-300"
+                    >
+                        Suscribir
+                    </button>
+                </form>
+                
+                <!-- Botón de WhatsApp -->
+                <!-- TODO: Reemplaza "TUNUMERO" con tu número de WhatsApp (ej. 593991234567) -->
+                <a 
+                    href="https://wa.me/TUNUMERO"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="bg-green-500 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center hover:bg-green-400 transition-colors duration-300"
+                >
+                    <!-- Icono de WhatsApp SVG -->
+                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M.057 24L5.98 22.06c-1.743-2.01-2.79-4.52-2.79-7.16C3.19 7.02 8.43 2 15.03 2s11.84 5.02 11.84 12.9c0 7.88-5.24 12.9-11.84 12.9-2.52 0-4.93-.89-6.9-2.51L.057 24zM8.34 7.08c-.16-.38-.47-.5-.7-.5-.22 0-.44 0-.66.02-.27 0-.7.36-.96.69-.26.33-.87.85-.87 2.07 0 1.22.89 2.89 1.02 3.1.13.2.18.33.3.52.8 1.4 1.96 2.62 3.5 3.48.5.28.8.44.98.56.45.28.87.48 1.3.62.2.06.38.1.58.1.48 0 1.2-.18 1.63-.84.44-.66.8-1.32.96-2.02.16-.7-.06-1.08-.28-1.28-.22-.2-.44-.3-.66-.4-.22-.1-.36-.12-.53-.12-.22 0-.44 0-.6.02-.22.02-.5.12-.76.66-.26.54-.48 1.02-.69 1.28-.2.26-.42.33-.66.2-.24-.13-1.04-.4-1.98-1.22-.73-.64-1.22-1.42-1.35-1.68-.13-.26-.02-.4.1-.52.1-.1.22-.26.33-.38.13-.12.2-.2.3-.3.1-.1.18-.2.23-.33.05-.13.02-.26 0-.38-.02-.12-.5-1.2-.69-1.62z"/>
+                    </svg>
+                    Contactar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
 
     <!-- 
     ========================================================================
@@ -370,19 +480,18 @@
         // Almacenamos las pestañas y contenidos para evitar buscarlos en el DOM cada vez
         const tabContents = {
             'historial': document.getElementById('tab-content-historial'),
-            'quienes-somos': document.getElementById('tab-content-quienes-somos'),
-            'podcasts': document.getElementById('tab-content-podcasts') // <-- AÑADIDO
+            'quienes-somos': document.getElementById('tab-content-quienes-somos')
         };
         
         const tabButtons = {
             'historial': document.getElementById('tab-btn-historial'),
-            'quienes-somos': document.getElementById('tab-btn-quienes-somos'),
-            'podcasts': document.getElementById('tab-btn-podcasts') // <-- AÑADIDO
+            'quienes-somos': document.getElementById('tab-btn-quienes-somos')
         };
 
         /**
+        /**
          * Cambia la pestaña visible.
-         * @param {'historial' | 'quienes-somos' | 'podcasts'} tabId El ID de la pestaña a mostrar // <-- MODIFICADO
+         * @param {'historial' | 'quienes-somos'} tabId El ID de la pestaña a mostrar // <-- MODIFICADO
          */
         function openTab(tabId) {
             // Ocultar todos los contenidos
