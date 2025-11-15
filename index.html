@@ -33,43 +33,44 @@
 
         /* Animación de entrada sutil para el contenido central */
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in-down {
             animation: fadeInDown 1.2s ease-out forwards;
         }
 
-        /* --- NUEVO: Animación de Ondas Radiales (Ecualizador) --- */
-        @keyframes pulseWave {
-          0%, 100% {
-            transform: scaleY(0.2); /* Altura mínima */
-            opacity: 0.7;
-          }
-          50% {
-            transform: scaleY(1.0); /* Altura máxima */
-            opacity: 1;
-          }
+        /* --- Estilos de las Ondas (Ecualizador) --- */
+        .wave-bar-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* Alinea las barras abajo */
+            height: 80px; /* Altura del contenedor de ondas */
+            gap: 6px; /* Espacio entre barras */
         }
-
         .wave-bar {
-            width: 6px; /* Ancho de la barra */
-            height: 100%; /* Altura controlada por el contenedor (h-12) */
-            background-color: #00BFFF; /* Color Neón Azul */
-            border-radius: 2px;
-            /* Animación: 1.3s de duración, infinita, con 'ease-in-out' */
-            animation: pulseWave 1.3s infinite ease-in-out;
-            transform-origin: bottom; /* Crecer desde abajo */
-            /* Efecto de resplandor Neón */
-            box-shadow: 0 0 4px #00BFFF, 0 0 8px #00BFFF;
+            width: 8px;
+            background-color: #00BFFF; /* Color azul eléctrico */
+            border-radius: 4px;
+            box-shadow: 0 0 8px #00BFFF, 0 0 12px #00BFFF; /* Efecto Neón */
+            animation: pulseWave 1.3s infinite ease-in-out alternate;
         }
-        /* --- FIN DE NUEVO CÓDIGO CSS --- */
+        /* Color neón magenta para barras específicas */
+        .wave-bar.magenta {
+            background-color: #FF00FF;
+            box-shadow: 0 0 8px #FF00FF, 0 0 12px #FF00FF;
+        }
+        /* Animación de pulsación de la onda */
+        @keyframes pulseWave {
+            0% {
+                height: 10px;
+                opacity: 0.7;
+            }
+            100% {
+                height: 70px; /* Altura máxima */
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body class="text-white">
@@ -81,7 +82,7 @@
     -->
     <main class="relative h-screen overflow-hidden">
         
-        <!-- 1. Video de Fondo (¡NUEVO VIDEO FUNCIONAL!) -->
+        <!-- 1. Video de Fondo (Simulación de red de partículas) -->
         <video 
             autoplay 
             loop 
@@ -90,22 +91,16 @@
             class="absolute top-0 left-0 w-full h-full object-cover z-0"
             poster="https://placehold.co/1920x1080/0A0A0A/1A1A1A?text=Loading+Video..."
         >
-            <!-- [VIDEO_DE_FONDO.mp4] - ¡ENLACE ACTUALIZADO! El anterior estaba roto. -->
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-particle-network-animation-2336-large.mp4" type="video/mp4">
+            <!-- [VIDEO_DE_FONDO.mp4] - Placeholder funcional de Pexels -->
+            <source src="https://videos.pexels.com/video-files/855321/855321-hd_1920_1080_25fps.mp4" type="video/mp4">
             Tu navegador no soporta el tag de video.
         </video>
-        <!-- FIN DEL BLOQUE DE VIDEO -->
         
-        <!-- 2. Capa de superposición oscura para legibilidad -->
-        <div class="absolute top-0 left-0 w-full h-full bg-black/60 z-10"></div>
+        <!-- 2. Capa de superposición con gradiente de marca -->
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-black/80 via-black/60 to-[#ff00ff]/20 z-10" style="backdrop-filter: blur(2px);"></div>
         
-        <!-- 3. ¡NUEVO! Capa de gradiente estético (Toque Tecnológico) -->
-        <!-- Añadimos un gradiente sutil con tus colores de marca -->
-        <div class="absolute top-0 left-0 w-full h-full z-[11] bg-gradient-to-br from-[#00BFFF]/10 via-transparent to-[#FF00FF]/10 opacity-75"></div>
-
         <!-- 
-        4. Contenido Central (Logo, Título, Subtítulo) 
-           Ajustado a z-20 para estar sobre todas las capas de fondo.
+        3. Contenido Central (Logo, Título, Subtítulo y Ondas) 
         -->
         <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-6">
             
@@ -126,25 +121,19 @@
             <p class="text-lg md:text-xl text-gray-300 mt-4 max-w-2xl mx-auto animate-fade-in-down" style="animation-delay: 0.6s;">
                 La primera radio IA de Quito. Música, tecnología y finanzas 24/7.
             </p>
-            
-            <!-- --- NUEVO: Visualizador de Ondas Radiales (Ecualizador) --- -->
-            <!-- Contenedor de las barras. 'items-end' alinea las barras abajo -->
-            <div class="flex justify-center items-end space-x-2 mt-10 h-12 animate-fade-in-down" style="animation-delay: 0.8s;">
-                <!-- Cada 'wave-bar' tiene un retraso de animación diferente -->
+
+            <!-- Ondas de Ecualizador Neón -->
+            <div class="wave-bar-container mt-10 animate-fade-in-down" style="animation-delay: 0.8s;">
                 <div class="wave-bar" style="animation-delay: 0.1s;"></div>
                 <div class="wave-bar" style="animation-delay: 0.3s;"></div>
-                <!-- Barra de color Magenta para contraste -->
-                <div class="wave-bar" style="animation-delay: 0.2s; background-color: #FF00FF; box-shadow: 0 0 4px #FF00FF, 0 0 8px #FF00FF;"></div>
-                <div class="wave-bar" style="animation-delay: 0.5s;"></div>
-                <div class="wave-bar" style="animation-delay: 0.4s;"></div>
+                <div class="wave-bar magenta" style="animation-delay: 0.5s;"></div>
                 <div class="wave-bar" style="animation-delay: 0.2s;"></div>
-                <!-- Barra de color Magenta para contraste -->
-                <div class="wave-bar" style="animation-delay: 0.1s; background-color: #FF00FF; box-shadow: 0 0 4px #FF00FF, 0 0 8px #FF00FF;"></div>
+                <div class="wave-bar" style="animation-delay: 0.4s;"></div>
+                <div class="wave-bar magenta" style="animation-delay: 0.1s;"></div>
                 <div class="wave-bar" style="animation-delay: 0.3s;"></div>
                 <div class="wave-bar" style="animation-delay: 0.5s;"></div>
             </div>
-            <!-- --- FIN DEL VISUALIZADOR --- -->
-
+            
         </div>
         
     </main>
@@ -183,7 +172,7 @@
                 </div>
             </div>
             
-            <!-- Derecha: Controles de Volumen y Donación -->
+            <!-- Derecha: Controles de Volumen -->
             <div class="flex items-center space-x-3 md:space-x-4">
                 <!-- Icono de Volumen -->
                 <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -201,16 +190,6 @@
                     onchange="setVolume(event.target.value)"
                     aria-label="Control de volumen"
                 >
-
-                <!-- 
-                  ============================================================
-                  Botón de Donación (Apoyar) ELIMINADO
-                  Lo hemos movido a la sección de "Interacción Radial"
-                  para mantener el footer limpio.
-                  ============================================================
-                -->
-                <!-- ========================================================== -->
-
             </div>
             
         </div>
@@ -218,14 +197,18 @@
 
     <!-- 
     ========================================================================
-    CONTENIDO DE LA PÁGINA (CON EL IFRAME)
+    ELEMENTO DE AUDIO (Stream Real)
     ========================================================================
     -->
+    <audio id="radioStream" preload="none">
+        <source src="https://stream.casthost.net/listen/radio_ia_first/RadioIAFirst" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
     <!-- 
-      MODIFICADO:
-      Convertimos la sección de contenido en un sistema de Pestañas (Tabs)
-      para alojar el 'Historial' y el 'Formulario de Pedidos' sin
-      sobrecargar la interfaz.
+    ========================================================================
+    SECCIÓN DE CONTENIDO (Pestañas)
+    ========================================================================
     -->
     <div class="min-h-screen bg-[#0A0A0A] p-10">
         <!-- Contenedor centrado para las pestañas -->
@@ -234,11 +217,7 @@
             <!-- Título de la Sección -->
             <h2 class="text-3xl font-bold mb-6 text-center">Interacción Radial</h2>
 
-            <!-- 
-              ============================================================
-              NUEVO: Botón de Donación (Estilo Outline)
-              ============================================================
-            -->
+            <!-- Botón de Donación (Estilo Outline) -->
             <div class="flex justify-center mb-10">
                 <a 
                     href="https://ko-fi.com/H2H11OHEZ7" 
@@ -247,26 +226,19 @@
                     class="border-2 border-[#00BFFF] text-[#00BFFF] py-3 px-8 rounded-lg font-medium text-lg transition-colors duration-300 ease-in-out hover:bg-[#00BFFF] hover:text-[#0A0A0A] hover:shadow-[0_0_15px_#00BFFF] flex items-center justify-center"
                     title="Apoya la radio con una donación"
                 >
-                    <!-- 
-                      NUEVO: Icono SVG de Ko-fi (taza de café)
-                      Se colorea automáticamente con el texto (text-[#00BFFF])
-                    -->
+                    <!-- Icono SVG de Ko-fi (taza de café) -->
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
                         <path d="M544 0H96C82.7 0 72 10.7 72 24v192c0 13.3 10.7 24 24 24h32v160c0 53 43 96 96 96h16c17.7 0 32-14.3 32-32s-14.3-32-32-32h-16c-17.7 0-32-14.3-32-32V240h160v160c0 17.7-14.3 32-32 32h-16c-17.7 0-32 14.3-32 32s14.3 32 32 32h16c53 0 96-43 96-96V240h32c13.3 0 24-10.7 24-24V24c0-13.3-10.7-24-24-24zM40 464h496c13.3 0 24.1-10.8 24-24.1C559.4 425.8 548.2 416 535.9 416H40.1C27.8 416 16.6 425.8 16 439.9c-.1 13.3 10.7 24.1 24 24.1z"></path>
                     </svg>
-                    
-                    <!-- Texto del botón, con un margen a la izquierda -->
                     <span class="ml-3">Apoyar el Proyecto</span>
                 </a>
             </div>
-            <!-- ========================================================== -->
-
 
             <!-- Contenedor de Botones de Pestañas -->
             <div class="border-b border-gray-700 mb-6">
                 <nav class="-mb-px flex justify-center space-x-8" aria-label="Tabs">
                     
-                    <!-- Pestaña 1: Historial (Activa por defecto) -->
+                    <!-- Pestaña 1: Historial de Emisiones (Activa por defecto) -->
                     <button 
                         id="tab-btn-historial" 
                         onclick="openTab('historial')" 
@@ -275,13 +247,13 @@
                         Historial de Emisiones
                     </button>
                     
-                    <!-- Pestaña 2: Pedidos (Inactiva por defecto) -->
+                    <!-- Pestaña 2: Quiénes Somos (Reemplaza a "Pedir Canción") -->
                     <button 
-                        id="tab-btn-pedidos" 
-                        onclick="openTab('pedidos')" 
+                        id="tab-btn-quienes-somos" 
+                        onclick="openTab('quienes-somos')" 
                         class="tab-button border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg"
                     >
-                        Pedir Canción
+                        Quiénes Somos
                     </button>
 
                 </nav>
@@ -289,15 +261,22 @@
 
             <!-- Contenedor de Contenido de Pestañas -->
             <div>
-                <!-- Panel 1: Historial (Visible por defecto) -->
-                <div id="tab-content-historial" class="tab-content block">
+                <!-- Contenido Pestaña 1: Historial (Visible por defecto) -->
+                <div id="tab-content-historial" class="tab-content">
                     <iframe src="https://stream.casthost.net/public/radio_ia_first/history" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 300px; border: 0; border-radius: 8px;">Cargando ...</iframe>
                 </div>
                 
-                <!-- Panel 2: Pedidos (Oculto por defecto) -->
-                <div id="tab-content-pedidos" class="tab-content hidden">
-                    <!-- Iframe de Pedidos con min-height: 850px -->
-                    <iframe src="https://stream.casthost.net/public/radio_ia_first/embed-requests" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 850px; border: 0; border-radius: 8px;">Cargando ...</iframe>
+                <!-- Contenido Pestaña 2: Quiénes Somos (Oculta por defecto) -->
+                <div id="tab-content-quienes-somos" class="tab-content hidden">
+                    <!-- Contenido de "Quiénes Somos" con estilo -->
+                    <div class="text-gray-300 text-lg leading-relaxed p-6 bg-gray-900/50 rounded-lg">
+                        <p class="mb-4">
+                            Descubre Equipo Radial, el futuro de la radio en Quito. Somos la primera estación impulsada por Inteligencia Artificial, diseñada para líderes, innovadores y mentes curiosas.
+                        </p>
+                        <p>
+                            Nuestra programación 24/7 fusiona música de vanguardia generada por IA con insights esenciales sobre tecnología, finanzas y deportes, ofreciendo una experiencia auditiva premium tanto para tu vida personal como para impulsar tu negocio.
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -306,49 +285,28 @@
 
     <!-- 
     ========================================================================
-    ELEMENTO DE AUDIO (Stream Real)
-    ========================================================================
-    -->
-    <!-- Este es el reproductor de audio real, oculto, que controlamos con JS -->
-    <audio id="radioStream" preload="none">
-        <!-- URL de tu stream de audio de Casthost (Actualizada y Correcta) -->
-        <source src="https://stream.casthost.net/listen/radio_ia_first/RadioIAFirst" type="audio/mpeg">
-        Tu navegador no soporta el elemento de audio.
-    </audio>
-
-    <!-- 
-    ========================================================================
-    JAVASCRIPT (Conectado al Stream)
+    JAVASCRIPT (Stream + Lógica de Pestañas)
     ========================================================================
     -->
     <script>
-        // Obtenemos los elementos del DOM
+        // --- LÓGICA DEL REPRODUCTOR DE AUDIO ---
         const radioStream = document.getElementById('radioStream');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const playIcon = document.getElementById('playIcon');
         const pauseIcon = document.getElementById('pauseIcon');
         
-        /**
-         * Alterna el estado de Play/Pause y actualiza la UI del botón.
-         */
         function togglePlay() {
-            // Verifica si el audio está pausado o ha terminado
             if (radioStream.paused || radioStream.ended) {
-                // Lógica para REPRODUCIR
                 radioStream.play().then(() => {
-                    // Éxito al reproducir
                     playIcon.classList.add('hidden');
                     pauseIcon.classList.remove('hidden');
                     console.log('Audio reproduciendo');
                 }).catch(error => {
-                    // Error al reproducir (ej. autoplay bloqueado)
                     console.error('Error al reproducir:', error);
-                    // Asegurarse que la UI esté correcta
                     playIcon.classList.remove('hidden');
                     pauseIcon.classList.add('hidden');
                 });
             } else {
-                // Lógica para PAUSAR
                 radioStream.pause();
                 playIcon.classList.remove('hidden');
                 pauseIcon.classList.add('hidden');
@@ -356,18 +314,12 @@
             }
         }
 
-        /**
-         * Ajusta el volumen (Conectado).
-         * @param {number} value - El valor del slider (0-100)
-         */
         function setVolume(value) {
-            // El volumen de HTML Audio va de 0.0 a 1.0
             const volumeLevel = value / 100;
             radioStream.volume = volumeLevel;
             console.log('Volumen ajustado a:', volumeLevel);
         }
 
-        // Sincronizar el botón si el audio se pausa por otra razón
         radioStream.onpause = () => {
             playIcon.classList.remove('hidden');
             pauseIcon.classList.add('hidden');
@@ -376,41 +328,56 @@
             playIcon.classList.add('hidden');
             pauseIcon.classList.remove('hidden');
         };
-
+        
         // Inicializar el volumen al valor del slider
-        setVolume(70); // 70 es el valor por defecto que pusimos en el HTML
+        setVolume(70);
 
-
-        // --- NUEVO: Lógica para el sistema de Pestañas ---
-
-        // Estilos de clase para activo/inactivo (basado en Tailwind)
-        const activeTabClasses = ['border-[#00BFFF]', 'text-[#00BFFF]'];
-        const inactiveTabClasses = ['border-transparent', 'text-gray-500', 'hover:text-gray-300', 'hover:border-gray-500'];
+        // --- LÓGICA DE LAS PESTAÑAS ---
+        
+        // Almacenamos las pestañas y contenidos para evitar buscarlos en el DOM cada vez
+        const tabContents = {
+            'historial': document.getElementById('tab-content-historial'),
+            'quienes-somos': document.getElementById('tab-content-quienes-somos')
+        };
+        
+        const tabButtons = {
+            'historial': document.getElementById('tab-btn-historial'),
+            'quienes-somos': document.getElementById('tab-btn-quienes-somos')
+        };
 
         /**
-         * Maneja el cambio entre pestañas
-         * @param {string} tabName - 'historial' o 'pedidos'
+         * Cambia la pestaña visible.
+         * @param {'historial' | 'quienes-somos'} tabId El ID de la pestaña a mostrar
          */
-        function openTab(tabName) {
+        function openTab(tabId) {
             // Ocultar todos los contenidos
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.add('hidden');
+            Object.values(tabContents).forEach(content => {
+                if (content) content.classList.add('hidden');
             });
             
-            // Desactivar todos los botones
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove(...activeTabClasses);
-                button.classList.add(...inactiveTabClasses);
+            // Quitar el estilo activo de todos los botones
+            Object.values(tabButtons).forEach(button => {
+                if (button) {
+                    button.classList.remove('border-[#00BFFF]', 'text-[#00BFFF]');
+                    button.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-300', 'hover:border-gray-500');
+                }
             });
-
-            // Activar el contenido y botón correctos
-            document.getElementById(`tab-content-${tabName}`).classList.remove('hidden');
             
-            const activeButton = document.getElementById(`tab-btn-${tabName}`);
-            activeButton.classList.remove(...inactiveTabClasses);
-            activeButton.classList.add(...activeTabClasses);
+            // Mostrar el contenido de la pestaña seleccionada
+            if (tabContents[tabId]) {
+                tabContents[tabId].classList.remove('hidden');
+            }
+            
+            // Aplicar el estilo activo al botón seleccionado
+            if (tabButtons[tabId]) {
+                tabButtons[tabId].classList.add('border-[#00BFFF]', 'text-[#00BFFF]');
+                tabButtons[tabId].classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-300', 'hover:border-gray-500');
+            }
         }
-        // --- Fin de la lógica de Pestañas ---
+
+        // Asegurarse de que el estado inicial (Historial) sea correcto
+        // (Aunque ya está puesto en el HTML, esto es una buena práctica)
+        openTab('historial');
 
     </script>
     
