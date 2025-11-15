@@ -11,7 +11,7 @@
     <!-- Google Font: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     
     <!-- Custom Styles & Tailwind Config -->
     <style>
@@ -19,8 +19,50 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0A0A0A; /* Fondo base negro profundo */
+            color: #FFFFFF;
         }
         
+        /* --- NUEVO FONDO ANIMADO --- */
+        .animated-gradient-bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background-color: #0A0A0A;
+            /* Nebulosas de color sutiles */
+            background-image: 
+                radial-gradient(at 20% 80%, hsla(195, 100%, 50%, 0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 20%, hsla(300, 100%, 50%, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, hsla(210, 100%, 70%, 0.1) 0px, transparent 50%);
+            background-size: 200% 200%; /* Tamaño para la animación */
+            animation: animatedGradient 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes animatedGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        /* --- --- */
+
+        /* --- NUEVO ESTILO DE TEXTO GRADIENTE (LOGO) --- */
+        .text-gradient-logo {
+            background: linear-gradient(to right, #00BFFF, #FF00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        /* --- --- */
+
         /* Clases personalizadas para el reproductor */
         .accent-electric-blue {
             accent-color: #00BFFF;
@@ -55,21 +97,13 @@
             box-shadow: 0 0 8px #00BFFF, 0 0 12px #00BFFF; /* Efecto Neón */
             animation: pulseWave 1.3s infinite ease-in-out alternate;
         }
-        /* Color neón magenta para barras específicas */
         .wave-bar.magenta {
             background-color: #FF00FF;
             box-shadow: 0 0 8px #FF00FF, 0 0 12px #FF00FF;
         }
-        /* Animación de pulsación de la onda */
         @keyframes pulseWave {
-            0% {
-                height: 10px;
-                opacity: 0.7;
-            }
-            100% {
-                height: 70px; /* Altura máxima */
-                opacity: 1;
-            }
+            0% { height: 10px; opacity: 0.7; }
+            100% { height: 70px; opacity: 1; }
         }
     </style>
 </head>
@@ -82,35 +116,21 @@
     -->
     <main class="relative h-screen overflow-hidden">
         
-        <!-- 1. Video de Fondo (Simulación de red de partículas) -->
-        <video 
-            autoplay 
-            loop 
-            muted 
-            playsinline 
-            class="absolute top-0 left-0 w-full h-full object-cover z-0"
-            poster="https://placehold.co/1920x1080/0A0A0A/1A1A1A?text=Loading+Video..."
-        >
-            <!-- [VIDEO_DE_FONDO.mp4] - Placeholder funcional de Pexels -->
-            <source src="https://videos.pexels.com/video-files/855321/855321-hd_1920_1080_25fps.mp4" type="video/mp4">
-            Tu navegador no soporta el tag de video.
-        </video>
+        <!-- 1. NUEVO Fondo Animado (100% CSS) -->
+        <div class="animated-gradient-bg"></div>
         
-        <!-- 2. Capa de superposición con gradiente de marca -->
-        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-black/80 via-black/60 to-[#ff00ff]/20 z-10" style="backdrop-filter: blur(2px);"></div>
+        <!-- 2. Capa de superposición (eliminada, ya no es necesaria) -->
         
         <!-- 
         3. Contenido Central (Logo, Título, Subtítulo y Ondas) 
+           z-10 para estar sobre el fondo
         -->
-        <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-6">
+        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
             
-            <!-- Logo Placeholder -->
-            <img 
-                src="https://placehold.co/192x80/000000/00BFFF?text=Equipo+Radial&font=inter" 
-                alt="Logo Equipo Radial" 
-                class="w-48 mb-5 animate-fade-in-down"
-                style="animation-delay: 0.2s;"
-            >
+            <!-- NUEVO Logo de Texto con Gradiente -->
+            <h2 class="text-6xl md:text-7xl font-extrabold mb-5 animate-fade-in-down text-gradient-logo" style="animation-delay: 0.2s;">
+                Equipo Radial
+            </h2>
             
             <!-- Título Principal (H1) -->
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight animate-fade-in-down" style="animation-delay: 0.4s;">
