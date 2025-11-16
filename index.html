@@ -358,8 +358,9 @@
                     <p class="text-center text-gray-300 mb-6">Recibe novedades o contáctanos directamente por WhatsApp.</p>
                     <div class="flex flex-col md:flex-row gap-4">
                         
-                        <!-- Formulario de Email (simple) -->
-                        <form class="flex-1 flex flex-col sm:flex-row gap-2" onsubmit="event.preventDefault(); alert('Formulario de email enviado (placeholder)');">
+                        <!-- Formulario de Email (MODIFICADO) -->
+                        <!-- Quitamos el 'onsubmit' y le dimos un ID -->
+                        <form id="subscribe-form" class="flex-1 flex flex-col sm:flex-row gap-2">
                             <label for="email-input" class="sr-only">Tu email</label>
                             <input 
                                 type="email" 
@@ -370,6 +371,7 @@
                             >
                             <button 
                                 type="submit" 
+                                id="subscribe-button"
                                 class="bg-[#00BFFF] text-black font-bold py-3 px-6 rounded-lg hover:bg-white transition-colors duration-300"
                             >
                                 Suscribir
@@ -391,6 +393,8 @@
                             Contactar por WhatsApp
                         </a>
                     </div>
+                    <!-- NUEVO: Mensaje de feedback para el formulario -->
+                    <p id="subscribe-feedback" class="text-green-400 text-center mt-4 hidden"></p>
                 </div>
             </section>
 
@@ -494,6 +498,76 @@
         // Asegurarse de que el estado inicial (Historial) sea correcto
         // (Aunque ya está puesto en el HTML, esto es una buena práctica)
         openTab('historial');
+
+
+        // --- NUEVA LÓGICA PARA GOOGLE SHEETS ---
+
+        // ▼▼▼ ¡IMPORTANTE! ▼▼▼
+        // REEMPLAZA ESTA LÍNEA CON LA URL DE TU SCRIPT DE GOOGLE
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNTncO1OSocv9ybdlK409OAYAPwymsJonpuDSVj6-jdhDaK16OH4oNEqDGL5eGh9cd/exec';
+        // ▲▲▲ ¡IMPORTANTE! ▲▲▲
+
+        const subscribeForm = document.getElementById('subscribe-form');
+        const subscribeButton = document.getElementById('subscribe-button');
+        const emailInput = document.getElementById('email-input');
+        const feedback = document.getElementById('subscribe-feedback');
+
+        async function handleSubscribe(e) {
+            e.preventDefault();
+            const email = emailInput.value;
+
+            // Resetear feedback
+            feedback.classList.add('hidden');
+            feedback.classList.remove('text-red-400');
+            feedback.classList.add('text-green-400');
+
+            // Mostrar estado de carga
+            subscribeButton.disabled = true;
+            subscribeButton.textContent = 'Enviando...';
+
+            try {
+                // Usamos 'mode: no-cors' porque es una solicitud simple
+                // No podremos leer la respuesta, pero previene errores CORS.
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', 
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    // El script de Google espera un objeto JSON
+                    body: JSON.stringify({ email: email })
+                });
+
+                // Como usamos 'no-cors', no podemos verificar response.ok.
+                // Asumimos que funcionó si fetch() no lanzó un error.
+                
+                emailInput.value = ''; // Limpiar el campo
+                subscribeButton.textContent = '¡Suscrito!';
+                feedback.textContent = '¡Gracias por suscribirte!';
+                feedback.classList.remove('hidden');
+
+                // Resetear el botón después de 3 segundos
+                setTimeout(() => {
+                    feedback.classList.add('hidden');
+                    subscribeButton.disabled = false;
+                    subscribeButton.textContent = 'Suscribir';
+                }, 3000);
+
+            } catch (error) {
+                console.error('Error al enviar a Google Sheet:', error);
+                subscribeButton.disabled = false;
+                subscribeButton.textContent = 'Suscribir';
+                
+                // Mostrar mensaje de error
+                feedback.textContent = 'Error al enviar. Intenta de nuevo.';
+                feedback.classList.remove('hidden', 'text-green-400');
+                feedback.classList.add('text-red-400');
+            }
+        }
+
+        // Asignar el evento al formulario
+        subscribeForm.addEventListener('submit', handleSubscribe);
 
     </script>
     
