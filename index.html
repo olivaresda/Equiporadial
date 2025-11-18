@@ -15,17 +15,25 @@
     
     <!-- 
     ========================================================================
-    AQUÍ VA TU CÓDIGO DE GOOGLE ANALYTICS
+    REQUISITOS PWA (Para añadir el icono al teléfono)
     ========================================================================
     -->
-    <!-- Google tag (gtag.js) - INICIO -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="E. Radial">
+    
+    <!-- 
+    AQUÍ VA TU CÓDIGO DE GOOGLE ANALYTICS
+    -->
+    <!-- Google tag (gtag.js) - INICIO (Reemplaza G-TU_ID_DE_MEDICION con tu ID real) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TU_ID_DE_MEDICION"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     
-      gtag('config', 'G-TU_ID_DE_MEDICION'); // <-- Reemplaza esto con tu ID real
+      gtag('config', 'G-TU_ID_DE_MEDICION');
     </script>
     <!-- Google tag (gtag.js) - FIN -->
     
@@ -36,23 +44,27 @@
             font-family: 'Inter', sans-serif;
             background-color: #0A0A0A; /* Fondo base negro profundo */
             color: #FFFFFF;
+            padding-top: 0;
+        }
+
+        /* Estilos de la barra de instalación en móvil */
+        @media (min-width: 640px) {
+             #install-bar { display: none; }
+        }
+        @media (max-width: 639px) {
+            body { padding-top: 52px; }
+            #install-bar { display: flex; }
         }
         
         /* --- FONDO ANIMADO --- */
         .animated-gradient-bg {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 0;
+            width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 0;
             background-color: #0A0A0A;
-            /* Nebulosas de color sutiles */
             background-image: 
                 radial-gradient(at 20% 80%, hsla(195, 100%, 50%, 0.15) 0px, transparent 50%),
                 radial-gradient(at 80% 20%, hsla(300, 100%, 50%, 0.15) 0px, transparent 50%),
                 radial-gradient(at 50% 50%, hsla(210, 100%, 70%, 0.1) 0px, transparent 50%);
-            background-size: 200% 200%; /* Tamaño para la animación */
+            background-size: 200% 200%;
             animation: animatedGradient 20s ease-in-out infinite alternate;
         }
 
@@ -71,15 +83,13 @@
             text-fill-color: transparent;
         }
 
-        /* Clases personalizadas para el reproductor */
+        /* Clases de utilidad y animaciones */
         .accent-electric-blue { accent-color: #00BFFF; }
         .ring-magenta-focus:focus {
             ring-color: #FF00FF;
             --tw-ring-offset-shadow: 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color), var(--tw-ring-shadow);
             box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow, 0 0 #0000);
         }
-
-        /* Animación de entrada sutil */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -88,22 +98,15 @@
 
         /* --- Estilos de las Ondas (Ecualizador) --- */
         .wave-bar-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            height: 80px;
-            gap: 6px;
+            display: flex; justify-content: center; align-items: flex-end; height: 80px; gap: 6px;
         }
         .wave-bar {
-            width: 8px;
-            background-color: #00BFFF;
-            border-radius: 4px;
+            width: 8px; background-color: #00BFFF; border-radius: 4px;
             box-shadow: 0 0 8px #00BFFF, 0 0 12px #00BFFF;
             animation: pulseWave 1.3s infinite ease-in-out alternate;
         }
         .wave-bar.magenta {
-            background-color: #FF00FF;
-            box-shadow: 0 0 8px #FF00FF, 0 0 12px #FF00FF;
+            background-color: #FF00FF; box-shadow: 0 0 8px #FF00FF, 0 0 12px #FF00FF;
         }
         @keyframes pulseWave {
             0% { height: 10px; opacity: 0.7; }
@@ -115,6 +118,26 @@
 
     <!-- 
     ========================================================================
+    BARRA DE NOTIFICACIÓN DE INSTALACIÓN (Solo en Móviles)
+    ========================================================================
+    -->
+    <div id="install-bar" class="fixed top-0 left-0 w-full bg-[#1A1A1A] text-white p-3 z-[999] text-center shadow-lg hidden">
+        <div class="w-full flex items-center justify-between">
+            <span class="text-sm font-medium mr-2">✨ ¡Lleva la radio a tu inicio!</span>
+            <div class="flex-shrink-0">
+                <button id="install-button-ios" class="text-[#00BFFF] hover:text-white text-sm font-bold border border-[#00BFFF] rounded-full px-3 py-1 hidden">
+                    Añadir
+                </button>
+                <button id="install-button-android" class="text-[#FF00FF] hover:text-white text-sm font-bold border border-[#FF00FF] rounded-full px-3 py-1 hidden">
+                    Instalar
+                </button>
+            </div>
+            <button id="close-install-bar" class="text-gray-500 hover:text-white ml-2 text-2xl font-bold">&times;</button>
+        </div>
+    </div>
+    
+    <!-- 
+    ========================================================================
     SECCIÓN HERO (100vh)
     ========================================================================
     -->
@@ -122,6 +145,27 @@
         
         <!-- Fondo Animado -->
         <div class="animated-gradient-bg"></div>
+        
+        <!-- Enlaces a Reproductores Externos (Esquina Superior Derecha) -->
+        <div class="absolute top-4 right-4 z-30">
+            <div class="bg-black/50 backdrop-blur-sm rounded-xl p-3 text-center border border-gray-700/50">
+                <p class="text-gray-400 text-xs sm:text-sm mb-2 whitespace-nowrap">Escucha con tu reproductor favorito</p>
+                <div class="flex justify-center space-x-3">
+                    <!-- VLC/M3U -->
+                    <a href="https://stream.casthost.net/public/radio_ia_first/playlist.m3u" title="Descargar M3U para VLC, iTunes" class="text-[#FF7700] hover:text-white transition-colors">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.4 12c.1.7.3 1.4.6 2 .4.8.9 1.5 1.6 2.1.8.8 1.8 1.3 2.9 1.6 1.1.2 2.2.2 3.3.1 1.2-.1 2.3-.5 3.4-1.1.5-.3.9-.6 1.4-1 .3-.3.6-.6.9-.9.4-.5.7-1.1 1-1.7.3-.6.5-1.3.6-2.1.1-.9.1-1.8 0-2.7-.1-.9-.3-1.8-.7-2.6-.4-.7-.9-1.3-1.5-1.9-.6-.5-1.4-.9-2.2-1.2-.8-.3-1.6-.4-2.4-.4-1.2 0-2.5.3-3.7.8-.5.2-1.1.5-1.6.8-.4.2-.8.5-1.2.8-.4.3-.8.6-1.1 1-.4.4-.7.8-1 1.3-.3.5-.5 1.1-.7 1.7-.2.6-.3 1.2-.3 1.8zM12 24c6.6 0 12-5.4 12-12S18.6 0 12 0 0 5.4 0 12s5.4 12 12 12zm0-22c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2zm-1 5.5l5 2.5-5 2.5V7.5z"/></svg>
+                    </a>
+                    <!-- Winamp/PLS -->
+                    <a href="https://stream.casthost.net/public/radio_ia_first/playlist.pls" title="Descargar PLS para Winamp, Foobar" class="text-[#00BFFF] hover:text-white transition-colors">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM10.5 7.5L16 12l-5.5 4.5V7.5z"/></svg>
+                    </a>
+                    <!-- Placeholder de 3er Reproductor -->
+                    <a href="https://stream.casthost.net/public/radio_ia_first/playlist.m3u" title="Descargar M3U" class="text-[#FF00FF] hover:text-white transition-colors">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.5 16.5v-9l6 4.5-6 4.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
         
         <!-- Contenido Central -->
         <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
@@ -192,7 +236,7 @@
             <!-- Controles de Volumen -->
             <div class="flex items-center space-x-3 md:space-x-4">
                 <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.43 8.35a1 1 0 00-1.06-.27l-2.02.68a1 1 0 00-.7.92v2.84a1 1 0 00.94 1l2.02-.68a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-1.01.34a.17.17 0 01-.14.15v-.65a1 1 0 00-.7-.92l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92v-2.84a1 1 0 00-.94-1l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92V6.03a1 1 0 00-1-1H7a1 1 0 00-1 1v.03a1 1 0 001 1h1a1 1 0 001-1V4a1 1 0 00-1-1H7z"></path>
+                    <path d="M7 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.43 8.35a1 1 0 00-1.06-.27l-2.02.68a1 1 0 00-.7.92v2.84a1 1 0 00.94 1l2.02-.68a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-1.01.34a.17.17 0 01-.14.15v-.65a1 1 0 00-.7-.92l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92v-2.84a1 1 0 00-.94-1l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92v-2.84a1 1 0 00-1.5-.87l-3.35 2.23a1 1 0 00-.5.87v4.54a1 1 0 001.5.87l3.35-2.23a1 1 0 00.5-.87V8.92a1 1 0 00-.7-.92l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92V6.03a1 1 0 00-1-1H7a1 1 0 00-1 1v.03a1 1 0 001 1h1a1 1 0 001-1V4a1 1 0 00-1-1H7z"></path>
                     <path d="M10 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1z"></path>
                 </svg>
                 <input 
@@ -209,7 +253,11 @@
         </div>
     </footer>
 
-    <!-- Audio Stream -->
+    <!-- 
+    ========================================================================
+    ELEMENTO DE AUDIO (Stream Real)
+    ========================================================================
+    -->
     <audio id="radioStream" preload="none">
         <source src="https://stream.casthost.net/listen/radio_ia_first/RadioIAFirst" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
@@ -377,7 +425,7 @@
                             rel="noopener noreferrer"
                             class="bg-green-500 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center hover:bg-green-400 transition-colors duration-300"
                         >
-                            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24L5.98 22.06c-1.743-2.01-2.79-4.52-2.79-7.16C3.19 7.02 8.43 2 15.03 2s11.84 5.02 11.84 12.9c0 7.88-5.24 12.9-11.84 12.9-2.52 0-4.93-.89-6.9-2.51L.057 24zM8.34 7.08c-.16-.38-.47-.5-.7-.5-.22 0-.44 0-.66.02-.27 0-.7.36-.96.69-.26.33-.87.85-.87 2.07 0 1.22.89 2.89 1.02 3.1.13.2.18.33.3.52.8 1.4 1.96 2.62 3.5 3.48.5.28.8.44.98.56.45.28.87.48 1.3.62.2.06.38.1.58.1.48 0 1.2-.18 1.63-.84.44-.66.8-1.32.96-2.02.16-.7-.06-1.08-.28-1.28-.22-.2-.44-.3-.66-.4-.22-.1-.36-.12-.53-.12-.22 0-.44 0-.6.02-.22.02-.5.12-.76.66-.26.54-.48 1.02-.69 1.28-.2.26-.42.33-.66.2-.24-.13-1.04-.4-1.98-1.22-.73-.64-1.22-1.42-1.35-1.68-.13-.26-.02-.4.1-.52.1-.1.22-.26.33-.38.13-.12.2-.2.3-.3.1-.1.18-.2.23-.33.05-.13.02-.26 0-.38-.02-.12-.5-1.2-.69-1.62z"/></svg>
+                            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M.057 24L5.98 22.06c-1.743-2.01-2.79-4.52-2.79-7.16C3.19 7.02 8.43 2 15.03 2s11.84 5.02 11.84 12.9c0 7.88-5.24 12.9-11.84 12.9-2.52 0-4.93-.89-6.9-2.51L.057 24zM8.34 7.08c-.16-.38-.47-.5-.7-.5-.22 0-.44 0-.66.02-.27 0-.7.36-.96.69-.26.33-.87.85-.87 2.07 0 1.22.89 2.89 1.02 3.1.13.2.18.33.3.52.8 1.4 1.96 2.62 3.5 3.48.5.28.8.44.98.56.45.28.87.48 1.3.62.2.06.38.1.58.1.48 0 1.2-.18 1.63-.84.44-.66.8-1.32.96-2.02.16-.7-.06-1.08-.28-1.28-.22-.2-.44-.3-.66-.4-.22-.1-.36-.12-.53-.12-.22 0-.44 0-.6.02-.22.02-.5.12-.76.66-.26.54-.48 1.02-.69 1.28-.2.26-.42.33-.66.2-.24-.13-1.04-.4-1.98-1.22-.73-.64-1.22-1.42-1.35-1.68-.13-.26-.02-.4.1-.52.1-.1.22-.26.33-.38.13-.12.2-.2.3-.3.1-.1.18-.2.23-.33.05-.13.02-.26 0-.38-.02-.12-.5-1.2-.69-1.62z"/></svg>
                             Contactar por WhatsApp
                         </a>
                     </div>
@@ -484,6 +532,70 @@
             }
         }
         subscribeForm.addEventListener('submit', handleSubscribe);
+
+
+        // ====================================================================
+        // PWA INSTALLATION LOGIC (Añadir a la Pantalla de Inicio)
+        // ====================================================================
+
+        let deferredPrompt;
+        const installBar = document.getElementById('install-bar');
+        const installButtonAndroid = document.getElementById('install-button-android');
+        const installButtonIos = document.getElementById('install-button-ios');
+        const closeInstallBar = document.getElementById('close-install-bar');
+
+        // 1. Mostrar la barra al usuario
+        window.addEventListener('load', () => {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                installBar.classList.remove('hidden');
+                installBar.classList.add('flex');
+
+                const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+                if (isiOS) {
+                    installButtonIos.classList.remove('hidden');
+                    installBar.querySelector('span').textContent = 'Instala con Compartir ↗️';
+                } else {
+                    installButtonAndroid.classList.remove('hidden');
+                }
+            }
+        });
+
+        // 2. Evento para Android/Chrome (guarda el evento de instalación)
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installButtonAndroid.style.display = 'block';
+        });
+
+        // 3. Manejar el clic en el botón de Android
+        installButtonAndroid.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                installBar.classList.add('hidden'); 
+            }
+        });
+
+        // 4. Manejar el clic en el botón de iOS (solo instrucciones)
+        installButtonIos.addEventListener('click', () => {
+             alert('Para instalar: pulsa el ícono de Compartir (↗️) en tu navegador y selecciona "Añadir a pantalla de inicio".');
+             installBar.classList.add('hidden'); 
+        });
+
+        // 5. Ocultar la barra si el usuario la cierra manualmente
+        closeInstallBar.addEventListener('click', () => {
+            installBar.classList.add('hidden');
+        });
+
+        // Ocultar si ya está instalada
+        window.addEventListener('appinstalled', () => {
+            installBar.classList.add('hidden');
+        });
+
     </script>
 </body>
 </html>
