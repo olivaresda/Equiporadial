@@ -16,17 +16,16 @@
     <!-- 
     ========================================================================
     AQUÍ VA TU CÓDIGO DE GOOGLE ANALYTICS
-    Pega el código que te da Google (gtag.js) justo aquí.
     ========================================================================
     -->
-    <!-- Google tag (gtag.js) - INICIO (Reemplaza con tu código) -->
+    <!-- Google tag (gtag.js) - INICIO -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TU_ID_DE_MEDICION"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     
-      gtag('config', 'G-TU_ID_DE_MEDICION'); // <-- Reemplaza esto con tu ID
+      gtag('config', 'G-TU_ID_DE_MEDICION'); // <-- Reemplaza esto con tu ID real
     </script>
     <!-- Google tag (gtag.js) - FIN -->
     
@@ -39,7 +38,7 @@
             color: #FFFFFF;
         }
         
-        /* --- NUEVO FONDO ANIMADO --- */
+        /* --- FONDO ANIMADO --- */
         .animated-gradient-bg {
             width: 100%;
             height: 100%;
@@ -58,19 +57,12 @@
         }
 
         @keyframes animatedGradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        /* --- --- */
 
-        /* --- NUEVO ESTILO DE TEXTO GRADIENTE (LOGO) --- */
+        /* --- ESTILO DE TEXTO GRADIENTE (LOGO) --- */
         .text-gradient-logo {
             background: linear-gradient(to right, #00BFFF, #FF00FF);
             -webkit-background-clip: text;
@@ -78,40 +70,35 @@
             background-clip: text;
             text-fill-color: transparent;
         }
-        /* --- --- */
 
         /* Clases personalizadas para el reproductor */
-        .accent-electric-blue {
-            accent-color: #00BFFF;
-        }
+        .accent-electric-blue { accent-color: #00BFFF; }
         .ring-magenta-focus:focus {
             ring-color: #FF00FF;
             --tw-ring-offset-shadow: 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color), var(--tw-ring-shadow);
             box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow, 0 0 #0000);
         }
 
-        /* Animación de entrada sutil para el contenido central */
+        /* Animación de entrada sutil */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade-in-down {
-            animation: fadeInDown 1.2s ease-out forwards;
-        }
+        .animate-fade-in-down { animation: fadeInDown 1.2s ease-out forwards; }
 
         /* --- Estilos de las Ondas (Ecualizador) --- */
         .wave-bar-container {
             display: flex;
             justify-content: center;
-            align-items: flex-end; /* Alinea las barras abajo */
-            height: 80px; /* Altura del contenedor de ondas */
-            gap: 6px; /* Espacio entre barras */
+            align-items: flex-end;
+            height: 80px;
+            gap: 6px;
         }
         .wave-bar {
             width: 8px;
-            background-color: #00BFFF; /* Color azul eléctrico */
+            background-color: #00BFFF;
             border-radius: 4px;
-            box-shadow: 0 0 8px #00BFFF, 0 0 12px #00BFFF; /* Efecto Neón */
+            box-shadow: 0 0 8px #00BFFF, 0 0 12px #00BFFF;
             animation: pulseWave 1.3s infinite ease-in-out alternate;
         }
         .wave-bar.magenta {
@@ -133,21 +120,18 @@
     -->
     <main class="relative h-screen overflow-hidden">
         
-        <!-- 1. NUEVO Fondo Animado (100% CSS) -->
+        <!-- Fondo Animado -->
         <div class="animated-gradient-bg"></div>
         
-        <!-- 
-        3. Contenido Central (Logo, Título, Subtítulo y Ondas) 
-           z-10 para estar sobre el fondo
-        -->
+        <!-- Contenido Central -->
         <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
             
-            <!-- NUEVO Logo de Texto con Gradiente -->
+            <!-- Logo de Texto con Gradiente -->
             <h2 class="text-6xl md:text-7xl font-extrabold mb-5 animate-fade-in-down text-gradient-logo" style="animation-delay: 0.2s;">
                 Equipo Radial
             </h2>
             
-            <!-- Título Principal (H1) -->
+            <!-- Título Principal -->
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight animate-fade-in-down" style="animation-delay: 0.4s;">
                 El Sonido Inteligente para tu Vida y tu Negocio.
             </h1>
@@ -157,7 +141,7 @@
                 La primera radio IA de Quito. Música, tecnología y finanzas 24/7.
             </p>
 
-            <!-- Ondas de Ecualizador Neón -->
+            <!-- Ondas de Ecualizador -->
             <div class="wave-bar-container mt-10 animate-fade-in-down" style="animation-delay: 0.8s;">
                 <div class="wave-bar" style="animation-delay: 0.1s;"></div>
                 <div class="wave-bar" style="animation-delay: 0.3s;"></div>
@@ -175,47 +159,42 @@
 
     <!-- 
     ========================================================================
-    REPRODUCTOR DE AUDIO PERSISTENTE (Sticky Footer Player)
+    REPRODUCTOR DE AUDIO PERSISTENTE
     ========================================================================
     -->
     <footer class="fixed bottom-0 left-0 w-full h-20 md:h-16 bg-black/80 backdrop-blur-md z-50">
         <div class="h-full max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
             
-            <!-- Izquierda: Botón Play/Pause e Info "Al Aire" -->
+            <!-- Botón Play/Pause e Info "Al Aire" -->
             <div class="flex items-center space-x-3">
-                <!-- Botón Play/Pause -->
                 <button 
                     id="playPauseBtn" 
                     onclick="togglePlay()" 
                     class="flex-shrink-0 text-[#00BFFF] hover:text-white transition-colors duration-200 rounded-full"
                     aria-label="Reproducir o pausar"
                 >
-                    <!-- SVG Play (Visible por defecto) -->
+                    <!-- Play SVG -->
                     <svg id="playIcon" class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A.5.5 0 008 7.618v4.764a.5.5 0 00.555.45l3.67-2.382a.5.5 0 000-.9l-3.67-2.382z" clip-rule="evenodd"></path>
                     </svg>
-                    <!-- SVG Pause (Oculto por defecto) -->
+                    <!-- Pause SVG -->
                     <svg id="pauseIcon" class="w-10 h-10 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 6a1 1 0 00-1 1v6a1 1 0 102 0V7a1 1 0 00-1-1zm4 0a1 1 0 00-1 1v6a1 1 0 102 0V7a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                     </svg>
                 </button>
                 
-                <!-- Info "Al Aire" -->
                 <div class="hidden sm:block">
                     <span class="text-white font-medium truncate">Al Aire:</span>
                     <span class="text-gray-300 ml-2 truncate">Despertar Inteligente (IA Mix)</span>
                 </div>
             </div>
             
-            <!-- Derecha: Controles de Volumen -->
+            <!-- Controles de Volumen -->
             <div class="flex items-center space-x-3 md:space-x-4">
-                <!-- Icono de Volumen -->
                 <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.43 8.35a1 1 0 00-1.06-.27l-2.02.68a1 1 0 00-.7.92v2.84a1 1 0 00.94 1l2.02-.68a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-1.01.34a.17.17 0 01-.14.15v-.65a1 1 0 00-.7-.92l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92v-2.84a1 1 0 00-.94-1l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92v-2.84a1 1 0 00-1.5-.87l-3.35 2.23a1 1 0 00-.5.87v4.54a1 1 0 001.5.87l3.35-2.23a1 1 0 00.5-.87V8.92a1 1 0 00-.7-.92l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92V6.03a1 1 0 00-1-1H7a1 1 0 00-1 1v.03a1 1 0 001 1h1a1 1 0 001-1V4a1 1 0 00-1-1H7z"></path>
+                    <path d="M7 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.43 8.35a1 1 0 00-1.06-.27l-2.02.68a1 1 0 00-.7.92v2.84a1 1 0 00.94 1l2.02-.68a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-2.02.68a1 1 0 00-.7.92v.28l1.01-.34a1 1 0 00.82-1.89l-1.01.34a.17.17 0 01-.14.15v-.65a1 1 0 00-.7-.92l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92v-2.84a1 1 0 00-.94-1l-2.02.68a1 1 0 00-.82 1.89l2.02-.68a1 1 0 00.7-.92V6.03a1 1 0 00-1-1H7a1 1 0 00-1 1v.03a1 1 0 001 1h1a1 1 0 001-1V4a1 1 0 00-1-1H7z"></path>
                     <path d="M10 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1z"></path>
                 </svg>
-                
-                <!-- Slider de Volumen -->
                 <input 
                     type="range" 
                     min="0" 
@@ -230,11 +209,7 @@
         </div>
     </footer>
 
-    <!-- 
-    ========================================================================
-    ELEMENTO DE AUDIO (Stream Real)
-    ========================================================================
-    -->
+    <!-- Audio Stream -->
     <audio id="radioStream" preload="none">
         <source src="https://stream.casthost.net/listen/radio_ia_first/RadioIAFirst" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
@@ -242,24 +217,18 @@
 
     <!-- 
     ========================================================================
-    CONTENEDOR PRINCIPAL DEL CONTENIDO (Inicia después del Hero)
+    CONTENEDOR PRINCIPAL DEL CONTENIDO
     ========================================================================
     -->
-    <!-- Este div AHORA envuelve TODO el contenido scrollable de la página -->
     <div class="bg-[#0A0A0A] p-10">
-        
-        <!-- Contenedor centrado para todo el contenido, con espaciado vertical automático -->
-        <div class="max-w-4xl mx-auto space-y-20"> <!-- space-y-20 crea un margen entre cada sección hija -->
+        <div class="max-w-4xl mx-auto space-y-20">
 
             <!-- 
-            SECCIÓN 1: Pestañas (Historial / Quiénes Somos)
+            1. PESTAÑAS (Historial / Quiénes Somos)
             -->
             <section id="tabs-section">
-                <!-- Contenedor de Botones de Pestañas -->
                 <div class="border-b border-gray-700 mb-6">
                     <nav class="-mb-px flex flex-wrap justify-center space-x-6 sm:space-x-8" aria-label="Tabs">
-                        
-                        <!-- Pestaña 1: Historial de Emisiones (Activa por defecto) -->
                         <button 
                             id="tab-btn-historial" 
                             onclick="openTab('historial')" 
@@ -267,8 +236,6 @@
                         >
                             Historial
                         </button>
-                        
-                        <!-- Pestaña 2: Quiénes Somos -->
                         <button 
                             id="tab-btn-quienes-somos" 
                             onclick="openTab('quienes-somos')" 
@@ -276,20 +243,17 @@
                         >
                             Quiénes Somos
                         </button>
-
                     </nav>
                 </div>
 
-                <!-- Contenedor de Contenido de Pestañas -->
                 <div>
-                    <!-- Contenido Pestaña 1: Historial (Visible por defecto) -->
+                    <!-- Contenido Historial -->
                     <div id="tab-content-historial" class="tab-content">
                         <iframe src="https://stream.casthost.net/public/radio_ia_first/history" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 300px; border: 0; border-radius: 8px;">Cargando ...</iframe>
                     </div>
                     
-                    <!-- Contenido Pestaña 2: Quiénes Somos (Oculta por defecto) -->
+                    <!-- Contenido Quiénes Somos -->
                     <div id="tab-content-quienes-somos" class="tab-content hidden">
-                        <!-- Contenido de "Quiénes Somos" con estilo -->
                         <div class="text-gray-300 text-lg leading-relaxed p-6 bg-gray-900/50 rounded-lg">
                             <p class="mb-4">
                                 Descubre Equipo Radial, el futuro de la radio en Quito. Somos la primera estación impulsada por Inteligencia Artificial, diseñada para líderes, innovadores y mentes curiosas.
@@ -303,7 +267,7 @@
             </section>
 
             <!-- 
-            SECCIÓN 2: Apoya Nuestro Proyecto
+            2. APOYA NUESTRO PROYECTO (Donación)
             -->
             <section id="donacion-section">
                 <div class="bg-gray-900/50 rounded-lg p-8 text-center">
@@ -311,35 +275,47 @@
                     <p class="text-gray-300 text-lg leading-relaxed mb-8">
                         Equipo Radial es un proyecto independiente. Tu apoyo directo es fundamental para mantener nuestra señal 24/7, libre de interrupciones y desarrollando nueva música IA. Cada donación nos ayuda a seguir innovando.
                     </p>
-                    <a 
-                        href="https://ko-fi.com/equiporadial" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        class="border-2 border-[#00BFFF] text-[#00BFFF] py-3 px-8 rounded-lg font-medium text-lg transition-colors duration-300 ease-in-out hover:bg-[#00BFFF] hover:text-[#0A0A0A] hover:shadow-[0_0_15px_#00BFFF] flex items-center justify-center max-w-xs mx-auto"
-                        title="Apoya la radio con una donación en Ko-fi"
-                    >
-                        <!-- Icono SVG de Ko-fi (taza de café) -->
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M544 0H96C82.7 0 72 10.7 72 24v192c0 13.3 10.7 24 24 24h32v160c0 53 43 96 96 96h16c17.7 0 32-14.3 32-32s-14.3-32-32-32h-16c-17.7 0-32-14.3-32-32V240h160v160c0 17.7-14.3 32-32 32h-16c-17.7 0-32 14.3-32 32s14.3 32 32 32h16c53 0 96-43 96-96V240h32c13.3 0 24-10.7 24-24V24c0-13.3-10.7-24-24-24zM40 464h496c13.3 0 24.1-10.8 24-24.1C559.4 425.8 548.2 416 535.9 416H40.1C27.8 416 16.6 425.8 16 439.9c-.1 13.3 10.7 24.1 24 24.1z"></path>
-                        </svg>
-                        <span class="ml-3">Apóyanos en Ko-fi</span>
-                    </a>
+                    
+                    <!-- Botones de Donación (Ko-fi + PayPal) -->
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 items-center">
+                        
+                        <!-- Botón Ko-fi (Azul Eléctrico) -->
+                        <a 
+                            href="https://ko-fi.com/equiporadial" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            class="border-2 border-[#00BFFF] text-[#00BFFF] py-2 px-6 rounded-lg font-medium text-base transition-colors duration-300 ease-in-out hover:bg-[#00BFFF] hover:text-[#0A0A0A] hover:shadow-[0_0_15px_#00BFFF] flex items-center justify-center w-full sm:w-auto"
+                        >
+                            <!-- Icono SVG Ko-fi -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M544 0H96C82.7 0 72 10.7 72 24v192c0 13.3 10.7 24 24 24h32v160c0 53 43 96 96 96h16c17.7 0 32-14.3 32-32s-14.3-32-32-32h-16c-17.7 0-32-14.3-32-32V240h160v160c0 17.7-14.3 32-32 32h-16c-17.7 0-32 14.3-32 32s14.3 32 32 32h16c53 0 96-43 96-96V240h32c13.3 0 24-10.7 24-24V24c0-13.3-10.7-24-24-24zM40 464h496c13.3 0 24.1-10.8 24-24.1C559.4 425.8 548.2 416 535.9 416H40.1C27.8 416 16.6 425.8 16 439.9c-.1 13.3 10.7 24.1 24 24.1z"></path></svg>
+                            <span class="ml-2">Donar con Ko-fi</span>
+                        </a>
+
+                        <!-- Botón PayPal (Magenta Neón) -->
+                        <a 
+                            href="https://www.paypal.com/donate/?business=MZDZC52WGLHPN&no_recurring=0&item_name=Miles+de+peque%C3%B1os+comercios+y+auditores+escuchan+la+primera+radio+streaming+operada+con+IA++https%3A%2F%2Fequiporadial.com%2F&currency_code=USD" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            class="border-2 border-[#FF00FF] text-[#FF00FF] py-2 px-6 rounded-lg font-medium text-base transition-colors duration-300 ease-in-out hover:bg-[#FF00FF] hover:text-[#0A0A0A] hover:shadow-[0_0_15px_#FF00FF] flex items-center justify-center w-full sm:w-auto"
+                        >
+                            <!-- Icono SVG PayPal -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c6.6 0 11.7-4.5 13.2-11.4.2-.5.6-2.6 1.2-5.1 1-4 2.9-15.4 4.3-22.8 2.2-14.4 4-20.6 4-20.6 1.4-7.9 7.8-13.6 15.6-13.6 31.2 0 45.9 0 59.9-.3+140.6-1.8 184.3-61.5 201.9-134.5 17.1-68.8-9.2-115.2-70.4-122.5z"/></svg>
+                            <span class="ml-2">Donar con PayPal</span>
+                        </a>
+
+                    </div>
                 </div>
             </section>
 
             <!-- 
-            SECCIÓN 3: Ecuador Música B2B
+            3. ECUADOR MÚSICA B2B
             -->
             <section id="b2b-section">
-                <!-- Título de la Sección -->
-                <h2 class="text-4xl font-bold mb-6 text-center text-gradient-logo">
-                    Ecuador Música B2B
-                </h2>
+                <h2 class="text-4xl font-bold mb-6 text-center text-gradient-logo">Ecuador Música B2B</h2>
                 <p class="text-center text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
                     Una solución inteligente y legal para el audio de tu negocio.
                 </p>
 
-                <!-- Contenedor de contenido -->
                 <div class="bg-gray-900/50 rounded-lg p-8">
                     <h3 class="text-2xl font-bold text-white mb-4">El Desafío: Música para Negocios en Ecuador</h3>
                     <p class="text-gray-300 text-lg leading-relaxed mb-4">
@@ -347,15 +323,15 @@
                     </p>
                     <p class="text-gray-300 text-lg leading-relaxed mb-6">
                         El riesgo de multas por parte de un fiscalizador es real, y navegar el sistema es frustrante y costoso.
-                </p>
+                    </p>
 
-                <h3 class="text-2xl font-bold text-white mb-4">La Solución: Equipo Radial B2B</h3>
-                <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                    Con Equipo Radial, te liberas de todo ese estrés. Tu negocio obtiene la tranquilidad que necesita:
-                </p>
-                
-                <ul class="list-disc list-inside text-gray-300 text-lg space-y-3 mb-8">
-                    <li>Un <strong class="text-[#00BFFF]">Certificado de Licencia</strong> que acredita el uso de nuestra señal en formato 'free' y libre de pagos a sociedades de gestión.</li>
+                    <h3 class="text-2xl font-bold text-white mb-4">La Solución: Equipo Radial B2B</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Con Equipo Radial, te liberas de todo ese estrés. Tu negocio obtiene la tranquilidad que necesita:
+                    </p>
+                    
+                    <ul class="list-disc list-inside text-gray-300 text-lg space-y-3 mb-8">
+                        <li>Un <strong class="text-[#00BFFF]">Certificado de Licencia</strong> que acredita el uso de nuestra señal en formato 'free' y libre de pagos a sociedades de gestión.</li>
                         <li>Acceso a un <strong class="text-[#00BFFF]">número de teléfono de soporte</strong> para que nosotros le expliquemos directamente al fiscalizador que tu música está en regla.</li>
                         <li>Paz mental y el ahorro de cientos de dólares en licencias tradicionales.</li>
                     </ul>
@@ -367,7 +343,7 @@
             </section>
 
             <!-- 
-            SECCIÓN 4: Contacto (Al final)
+            4. CONTACTO (Mantente Conectado)
             -->
             <section id="contacto-section">
                 <div class="p-6 sm:p-8 bg-gray-900/50 rounded-lg">
@@ -375,8 +351,7 @@
                     <p class="text-center text-gray-300 mb-6">Recibe novedades o contáctanos directamente por WhatsApp.</p>
                     <div class="flex flex-col md:flex-row gap-4">
                         
-                        <!-- Formulario de Email (MODIFICADO) -->
-                        <!-- Quitamos el 'onsubmit' y le dimos un ID -->
+                        <!-- Formulario de Email -->
                         <form id="subscribe-form" class="flex-1 flex flex-col sm:flex-row gap-2">
                             <label for="email-input" class="sr-only">Tu email</label>
                             <input 
@@ -396,36 +371,26 @@
                         </form>
                         
                         <!-- Botón de WhatsApp -->
-                <!-- TODO: Reemplaza "TUNUMERO" con tu número de WhatsApp (ej. 593991234567) -->
-                <a 
-                    href="https://wa.me/593962956502"
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                        <a 
+                            href="https://wa.me/593962956502"
+                            target="_blank" 
+                            rel="noopener noreferrer"
                             class="bg-green-500 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center hover:bg-green-400 transition-colors duration-300"
                         >
-                            <!-- Icono de WhatsApp SVG -->
-                            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M.057 24L5.98 22.06c-1.743-2.01-2.79-4.52-2.79-7.16C3.19 7.02 8.43 2 15.03 2s11.84 5.02 11.84 12.9c0 7.88-5.24 12.9-11.84 12.9-2.52 0-4.93-.89-6.9-2.51L.057 24zM8.34 7.08c-.16-.38-.47-.5-.7-.5-.22 0-.44 0-.66.02-.27 0-.7.36-.96.69-.26.33-.87.85-.87 2.07 0 1.22.89 2.89 1.02 3.1.13.2.18.33.3.52.8 1.4 1.96 2.62 3.5 3.48.5.28.8.44.98.56.45.28.87.48 1.3.62.2.06.38.1.58.1.48 0 1.2-.18 1.63-.84.44-.66.8-1.32.96-2.02.16-.7-.06-1.08-.28-1.28-.22-.2-.44-.3-.66-.4-.22-.1-.36-.12-.53-.12-.22 0-.44 0-.6.02-.22.02-.5.12-.76.66-.26.54-.48 1.02-.69 1.28-.2.26-.42.33-.66.2-.24-.13-1.04-.4-1.98-1.22-.73-.64-1.22-1.42-1.35-1.68-.13-.26-.02-.4.1-.52.1-.1.22-.26.33-.38.13-.12.2-.2.3-.3.1-.1.18-.2.23-.33.05-.13.02-.26 0-.38-.02-.12-.5-1.2-.69-1.62z"/>
-                            </svg>
+                            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24L5.98 22.06c-1.743-2.01-2.79-4.52-2.79-7.16C3.19 7.02 8.43 2 15.03 2s11.84 5.02 11.84 12.9c0 7.88-5.24 12.9-11.84 12.9-2.52 0-4.93-.89-6.9-2.51L.057 24zM8.34 7.08c-.16-.38-.47-.5-.7-.5-.22 0-.44 0-.66.02-.27 0-.7.36-.96.69-.26.33-.87.85-.87 2.07 0 1.22.89 2.89 1.02 3.1.13.2.18.33.3.52.8 1.4 1.96 2.62 3.5 3.48.5.28.8.44.98.56.45.28.87.48 1.3.62.2.06.38.1.58.1.48 0 1.2-.18 1.63-.84.44-.66.8-1.32.96-2.02.16-.7-.06-1.08-.28-1.28-.22-.2-.44-.3-.66-.4-.22-.1-.36-.12-.53-.12-.22 0-.44 0-.6.02-.22.02-.5.12-.76.66-.26.54-.48 1.02-.69 1.28-.2.26-.42.33-.66.2-.24-.13-1.04-.4-1.98-1.22-.73-.64-1.22-1.42-1.35-1.68-.13-.26-.02-.4.1-.52.1-.1.22-.26.33-.38.13-.12.2-.2.3-.3.1-.1.18-.2.23-.33.05-.13.02-.26 0-.38-.02-.12-.5-1.2-.69-1.62z"/></svg>
                             Contactar por WhatsApp
                         </a>
                     </div>
-                    <!-- NUEVO: Mensaje de feedback para el formulario -->
                     <p id="subscribe-feedback" class="text-green-400 text-center mt-4 hidden"></p>
                 </div>
             </section>
 
-        </div> <!-- Fin del max-w-4xl y space-y-20 -->
-    </div> <!-- Fin del div bg-[#0A0A0A] p-10 -->
+        </div>
+    </div>
 
-
-    <!-- 
-    ========================================================================
-    JAVASCRIPT (Stream + Lógica de Pestañas)
-    ========================================================================
-    -->
+    <!-- JavaScript -->
     <script>
-        // --- LÓGICA DEL REPRODUCTOR DE AUDIO ---
+        // Player Logic
         const radioStream = document.getElementById('radioStream');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const playIcon = document.getElementById('playIcon');
@@ -436,9 +401,8 @@
                 radioStream.play().then(() => {
                     playIcon.classList.add('hidden');
                     pauseIcon.classList.remove('hidden');
-                    console.log('Audio reproduciendo');
                 }).catch(error => {
-                    console.error('Error al reproducir:', error);
+                    console.error('Error:', error);
                     playIcon.classList.remove('hidden');
                     pauseIcon.classList.add('hidden');
                 });
@@ -446,84 +410,40 @@
                 radioStream.pause();
                 playIcon.classList.remove('hidden');
                 pauseIcon.classList.add('hidden');
-                console.log('Audio pausado');
             }
         }
 
-        function setVolume(value) {
-            const volumeLevel = value / 100;
-            radioStream.volume = volumeLevel;
-            console.log('Volumen ajustado a:', volumeLevel);
-        }
-
-        radioStream.onpause = () => {
-            playIcon.classList.remove('hidden');
-            pauseIcon.classList.add('hidden');
-        };
-        radioStream.onplay = () => {
-            playIcon.classList.add('hidden');
-            pauseIcon.classList.remove('hidden');
-        };
-        
-        // Inicializar el volumen al valor del slider
+        function setVolume(value) { radioStream.volume = value / 100; }
+        radioStream.onpause = () => { playIcon.classList.remove('hidden'); pauseIcon.classList.add('hidden'); };
+        radioStream.onplay = () => { playIcon.classList.add('hidden'); pauseIcon.classList.remove('hidden'); };
         setVolume(70);
 
-        // --- LÓGICA DE LAS PESTAÑAS ---
-        
-        // Almacenamos las pestañas y contenidos para evitar buscarlos en el DOM cada vez
+        // Tabs Logic
         const tabContents = {
             'historial': document.getElementById('tab-content-historial'),
             'quienes-somos': document.getElementById('tab-content-quienes-somos')
         };
-        
         const tabButtons = {
             'historial': document.getElementById('tab-btn-historial'),
             'quienes-somos': document.getElementById('tab-btn-quienes-somos')
         };
 
-        /**
-        /**
-         * Cambia la pestaña visible.
-         * @param {'historial' | 'quienes-somos'} tabId El ID de la pestaña a mostrar // <-- MODIFICADO
-         */
         function openTab(tabId) {
-            // Ocultar todos los contenidos
-            Object.values(tabContents).forEach(content => {
-                if (content) content.classList.add('hidden');
+            Object.values(tabContents).forEach(c => c.classList.add('hidden'));
+            Object.values(tabButtons).forEach(b => {
+                b.classList.remove('border-[#00BFFF]', 'text-[#00BFFF]');
+                b.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-300', 'hover:border-gray-500');
             });
-            
-            // Quitar el estilo activo de todos los botones
-            Object.values(tabButtons).forEach(button => {
-                if (button) {
-                    button.classList.remove('border-[#00BFFF]', 'text-[#00BFFF]');
-                    button.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-300', 'hover:border-gray-500');
-                }
-            });
-            
-            // Mostrar el contenido de la pestaña seleccionada
-            if (tabContents[tabId]) {
-                tabContents[tabId].classList.remove('hidden');
-            }
-            
-            // Aplicar el estilo activo al botón seleccionado
+            if (tabContents[tabId]) tabContents[tabId].classList.remove('hidden');
             if (tabButtons[tabId]) {
                 tabButtons[tabId].classList.add('border-[#00BFFF]', 'text-[#00BFFF]');
                 tabButtons[tabId].classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-300', 'hover:border-gray-500');
             }
         }
-
-        // Asegurarse de que el estado inicial (Historial) sea correcto
-        // (Aunque ya está puesto en el HTML, esto es una buena práctica)
         openTab('historial');
 
-
-        // --- NUEVA LÓGICA PARA GOOGLE SHEETS ---
-
-        // ▼▼▼ ¡IMPORTANTE! ▼▼▼
-        // REEMPLAZA ESTA LÍNEA CON LA URL DE TU SCRIPT DE GOOGLE
+        // Google Sheets Logic
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNTncO1OSocv9ybdlK409OAYAPwymsJonpuDSVj6-jdhDaK16OH4oNEqDGL5eGh9cd/exec';
-        // ▲▲▲ ¡IMPORTANTE! ▲▲▲
-
         const subscribeForm = document.getElementById('subscribe-form');
         const subscribeButton = document.getElementById('subscribe-button');
         const emailInput = document.getElementById('email-input');
@@ -532,61 +452,38 @@
         async function handleSubscribe(e) {
             e.preventDefault();
             const email = emailInput.value;
-
-            // Resetear feedback
             feedback.classList.add('hidden');
             feedback.classList.remove('text-red-400');
             feedback.classList.add('text-green-400');
-
-            // Mostrar estado de carga
             subscribeButton.disabled = true;
             subscribeButton.textContent = 'Enviando...';
 
             try {
-                // Usamos 'mode: no-cors' porque es una solicitud simple
-                // No podremos leer la respuesta, pero previene errores CORS.
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors', 
-                    cache: 'no-cache',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    // El script de Google espera un objeto JSON
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: email })
                 });
-
-                // Como usamos 'no-cors', no podemos verificar response.ok.
-                // Asumimos que funcionó si fetch() no lanzó un error.
                 
-                emailInput.value = ''; // Limpiar el campo
+                emailInput.value = '';
                 subscribeButton.textContent = '¡Suscrito!';
                 feedback.textContent = '¡Gracias por suscribirte!';
                 feedback.classList.remove('hidden');
-
-                // Resetear el botón después de 3 segundos
                 setTimeout(() => {
                     feedback.classList.add('hidden');
                     subscribeButton.disabled = false;
                     subscribeButton.textContent = 'Suscribir';
                 }, 3000);
-
             } catch (error) {
-                console.error('Error al enviar a Google Sheet:', error);
                 subscribeButton.disabled = false;
                 subscribeButton.textContent = 'Suscribir';
-                
-                // Mostrar mensaje de error
                 feedback.textContent = 'Error al enviar. Intenta de nuevo.';
                 feedback.classList.remove('hidden', 'text-green-400');
                 feedback.classList.add('text-red-400');
             }
         }
-
-        // Asignar el evento al formulario
         subscribeForm.addEventListener('submit', handleSubscribe);
-
     </script>
-    
 </body>
 </html>
