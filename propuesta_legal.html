@@ -1,0 +1,249 @@
+<!-- Chosen Palette: Dark Mode Tecnológico (Fondo Blanco, Texto Azul Eléctrico y Magenta Neón) -->
+<!-- Application Structure Plan: Dashboard Persuasivo (Funnel de Venta Legal). La estructura guía al usuario de forma lineal: 1. Diagnóstico del Problema (Riesgo legal y OGCs) -> 2. La Solución (Certificado y Comparación de Valor) -> 3. Transparencia (Exclusiones y Términos). Se eligió esta estructura para maximizar el impacto persuasivo y facilitar la síntesis de la propuesta de valor legal. -->
+<!-- Visualization & Content Choices: Matriz de OGCs (HTML/CSS/Tailwind) para visualizar la complejidad del riesgo. Bloques de texto colapsables (Acordeón/Toggle JS) para mantener las Exclusiones y Compromisos organizados y limpios. La tabla comparativa es clave para la usabilidad, mostrando el valor de Cero Riesgo. CONFIRMING: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo Radial - Certificación Legal B2B</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+        .text-blue-neon { color: #00BFFF; }
+        .bg-blue-neon-light { background-color: #E0F7FF; }
+        .text-magenta-neon { color: #FF00FF; }
+        
+        .shadow-neon-blue { box-shadow: 0 0 10px rgba(0, 191, 255, 0.4); }
+        .shadow-neon-magenta { box-shadow: 0 0 10px rgba(255, 0, 255, 0.4); }
+        
+        .acordeon-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease-out; }
+        .acordeon-content.active { max-height: 500px; padding-top: 1rem; padding-bottom: 1rem; }
+    </style>
+</head>
+<body class="p-4 sm:p-10">
+
+    <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg border border-gray-100">
+        
+        <!-- HEADER PRINCIPAL -->
+        <header class="p-6 sm:p-10 bg-gray-900 rounded-t-xl text-white">
+            <h1 class="text-4xl font-extrabold tracking-tight mb-2">
+                <span class="text-blue-neon">Certificación Legal B2B</span>
+            </h1>
+            <h2 class="text-2xl font-light text-gray-300">
+                Propuesta de Valor: Música de Negocio Libre de Riesgos Legales
+            </h2>
+            <p class="mt-3 text-sm text-gray-400 max-w-3xl">
+                Esta aplicación interactiva presenta la justificación legal y comercial de Equipo Radial para negocios en Ecuador, demostrando cómo nuestro servicio garantiza la tranquilidad legal y la protección contra multas por derechos de autor.
+            </p>
+        </header>
+
+        <!-- CONTENEDOR PRINCIPAL INTERACTIVO -->
+        <main class="p-6 sm:p-10 space-y-16">
+
+            <!-- SECCIÓN 1: EL DIAGNÓSTICO (El Problema y el Riesgo) -->
+            <section id="diagnostico">
+                <h3 class="text-3xl font-bold mb-6 text-gray-800 border-l-4 border-red-500 pl-4">1. El Riesgo Legal de la Música "Gratis"</h3>
+                
+                <p class="mb-8 text-gray-600">
+                    La mayoría de los negocios en Ecuador cometen un error legal fundamental: usar licencias de uso personal (Spotify, YouTube, CDs) para la **comunicación pública**. La ley exige la obtención de licencias de múltiples organismos.
+                </p>
+
+                <!-- MATRIZ DE ORGANISMOS DE GESTIÓN COLECTIVA (OGCs) -->
+                <div class="bg-red-50 border-t-4 border-red-500 rounded-lg p-6">
+                    <h4 class="text-xl font-bold mb-4 text-red-700 flex items-center">
+                        <span class="text-2xl mr-2">🚨</span> Entidades de Riesgo en Ecuador (OGCs)
+                    </h4>
+                    <p class="text-sm text-red-600 mb-4">El Cliente sin Equipo Radial es responsable de estas 3 licencias, enfrentando inspecciones y multas por cada una.</p>
+                    
+                    <div id="ogc-list" class="space-y-4">
+                        <!-- OGC 1 -->
+                        <div class="bg-white p-4 rounded-lg shadow border-l-4 border-blue-600 hover:shadow-neon-blue transition duration-300 cursor-pointer" onclick="toggleDetail('sayce')">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">SAYCE</span>
+                                <span class="text-blue-600 text-sm">Derechos de Autor (Compositores)</span>
+                                <span id="arrow-sayce" class="transform transition duration-300">▼</span>
+                            </div>
+                            <div id="detail-sayce" class="acordeon-content text-gray-600 text-sm">
+                                <p>Tasa que el cliente debe pagar por el uso de obras musicales. Riesgo de inspección constante si no se cumplen los pagos.</p>
+                            </div>
+                        </div>
+                        <!-- OGC 2 -->
+                        <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-600 hover:shadow-neon-blue transition duration-300 cursor-pointer" onclick="toggleDetail('sarjae')">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">SARJAE</span>
+                                <span class="text-green-600 text-sm">Derechos Conexos (Artistas Intérpretes)</span>
+                                <span id="arrow-sarjae" class="transform transition duration-300">▼</span>
+                            </div>
+                            <div id="detail-sarjae" class="acordeon-content text-gray-600 text-sm">
+                                <p>Tasa por la comunicación pública de interpretaciones. Un pago adicional y separado del de SAYCE.</p>
+                            </div>
+                        </div>
+                        <!-- OGC 3 -->
+                        <div class="bg-white p-4 rounded-lg shadow border-l-4 border-purple-600 hover:shadow-neon-blue transition duration-300 cursor-pointer" onclick="toggleDetail('asoprofon')">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">ASOPROFON</span>
+                                <span class="text-purple-600 text-sm">Derechos Conexos (Productores/Sellos)</span>
+                                <span id="arrow-asoprofon" class="transform transition duration-300">▼</span>
+                            </div>
+                            <div id="detail-asoprofon" class="acordeon-content text-gray-600 text-sm">
+                                <p>Tasa por la reproducción y comunicación pública de fonogramas. Multiplicidad de pagos y gestiones administrativas complejas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2: LA SOLUCIÓN (La Propuesta de Valor) -->
+            <section id="solucion">
+                <h3 class="text-3xl font-bold mb-6 text-gray-800 border-l-4 border-blue-neon pl-4">2. Propuesta de Valor: Blindaje Legal con Equipo Radial</h3>
+                
+                <p class="mb-8 text-gray-600">
+                    Al contratar nuestro servicio B2B, el Cliente **transfiere la responsabilidad** de licencias y pagos. La música de Equipo Radial está libre del repertorio de OGCs.
+                </p>
+
+                <!-- TABLA COMPARATIVA DE VALOR -->
+                <div class="overflow-x-auto rounded-lg shadow-xl shadow-blue-neon-light">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-blue-neon-light text-gray-800">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">Situación</th>
+                                <th class="px-6 py-3 text-center text-xs font-bold uppercase tracking-wider">Sin Equipo Radial (Riesgo Alto)</th>
+                                <th class="px-6 py-3 text-center text-xs font-bold uppercase tracking-wider bg-blue-neon-light text-blue-neon">Con Equipo Radial (Riesgo Cero)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 font-bold whitespace-nowrap">Responsabilidad Legal</td>
+                                <td class="px-6 py-4 text-red-600 font-medium">Directa (Cliente responsable de múltiples tasas).</td>
+                                <td class="px-6 py-4 text-blue-neon font-bold">Asumida por Equipo Radial.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-bold whitespace-nowrap">Riesgo de Multa</td>
+                                <td class="px-6 py-4 text-red-600 font-medium">Alto y constante ante inspecciones de OGC.</td>
+                                <td class="px-6 py-4 text-blue-neon font-bold">Nulo. Certificado de Uso Comercial.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-bold whitespace-nowrap">Certificación</td>
+                                <td class="px-6 py-4 text-gray-500">Ninguna para uso comercial.</td>
+                                <td class="px-6 py-4 text-blue-neon font-bold">Certificado de Licencia y Soporte Directo.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-bold whitespace-nowrap">Gestión Administrativa</td>
+                                <td class="px-6 py-4 text-red-600 font-medium">Compleja (tiempo y recursos en gestionar 3+ pagos).</td>
+                                <td class="px-6 py-4 text-blue-neon font-bold">Cero. Gasto simplificado en un solo contrato.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- BLOQUE DE ACCIÓN -->
+                <div class="mt-8 bg-gray-100 border-l-4 border-magenta-neon rounded-lg p-6 text-center shadow-neon-magenta">
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">¡Garantía de Blindaje Legal!</h4>
+                    <p class="text-gray-600 mb-4">
+                        En caso de inspección, proveemos soporte directo al fiscalizador, presentando la documentación legal que ampara el uso libre de nuestra señal.
+                    </p>
+                    <button class="bg-magenta-neon text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-neon-magenta transition duration-300">
+                        Contáctanos para tu Certificado
+                    </button>
+                </div>
+            </section>
+            
+            <!-- SECCIÓN 3: EL COMPROMISO (Exclusiones y Términos) -->
+            <section id="compromiso">
+                <h3 class="text-3xl font-bold mb-6 text-gray-800 border-l-4 border-gray-500 pl-4">3. Exclusiones y Compromisos del Cliente</h3>
+                
+                <p class="mb-8 text-gray-600">
+                    Para que la garantía sea válida, el Cliente debe utilizar la señal de Equipo Radial de manera exclusiva. Conoce las exclusiones y tus compromisos.
+                </p>
+
+                <!-- ACORDEÓN DE TÉRMINOS -->
+                <div class="space-y-4">
+                    <!-- ACORDEÓN 1: Exclusiones de la Garantía -->
+                    <div class="bg-white rounded-lg shadow border-b border-gray-200">
+                        <button class="w-full text-left p-4 flex justify-between items-center font-bold text-lg text-gray-700 hover:bg-gray-50 transition duration-300" onclick="toggleAcordeon('exclusiones')">
+                            <span>Exclusiones de la Garantía (Riesgos que Equipo Radial NO Cubre)</span>
+                            <span id="arrow-exclusiones" class="transform transition duration-300">▶</span>
+                        </button>
+                        <div id="content-exclusiones" class="acordeon-content px-4">
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>**Música Alterna:** Uso de cualquier fuente musical que no sea la señal exclusiva de Equipo Radial (ej: CDs, Spotify personal, radio tradicional).</li>
+                                <li>**Contenido No Musical:** Uso de imágenes, videos o programas de televisión que estén sujetos a otros derechos de autor.</li>
+                                <li>**Uso Ilegal de la Señal:** Reventa, sublicencia o redistribución de la señal de Equipo Radial a terceros.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ACORDEÓN 2: Compromisos del Cliente -->
+                    <div class="bg-white rounded-lg shadow border-b border-gray-200">
+                        <button class="w-full text-left p-4 flex justify-between items-center font-bold text-lg text-gray-700 hover:bg-gray-50 transition duration-300" onclick="toggleAcordeon('compromisos')">
+                            <span>Compromisos del Cliente</span>
+                            <span id="arrow-compromisos" class="transform transition duration-300">▶</span>
+                        </button>
+                        <div id="content-compromisos" class="acordeon-content px-4">
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>**Uso Exclusivo:** El Cliente debe utilizar únicamente la señal de Equipo Radial para la musicalización comercial.</li>
+                                <li>**Presentación del Certificado:** El Cliente debe mantener el Certificado de Licencia visible o disponible para cualquier inspección.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- ACORDEÓN 3: Resumen de Términos Comerciales -->
+                    <div class="bg-white rounded-lg shadow border-b border-gray-200">
+                        <button class="w-full text-left p-4 flex justify-between items-center font-bold text-lg text-gray-700 hover:bg-gray-50 transition duration-300" onclick="toggleAcordeon('terminos')">
+                            <span>Términos Comerciales (Resumen)</span>
+                            <span id="arrow-terminos" class="transform transition duration-300">▶</span>
+                        </button>
+                        <div id="content-terminos" class="acordeon-content px-4">
+                            <p class="text-gray-600">
+                                **Servicio:** [Insertar descripción del servicio de publicidad B2B aquí, que incluye la certificación musical].<br>
+                                **Vigencia del Contrato:** [Definir plazo, ej: 12 meses renovables].<br>
+                                **Costo:** [Definir el costo total y periodicidad de pago].
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="p-6 sm:p-10 text-center bg-gray-100 text-gray-600 rounded-b-xl">
+            <p class="text-sm">
+                **NOTA:** Esta es una propuesta comercial y legal. Los términos definitivos deben ser validados y formalizados por un contrato firmado y revisado por asesoría legal competente en Ecuador.
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        // LÓGICA PARA EL ACORDEÓN (OGCs y Términos)
+        function toggleDetail(id) {
+            const content = document.getElementById(`detail-${id}`);
+            const arrow = document.getElementById(`arrow-${id}`);
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('active');
+                arrow.style.transform = 'rotate(180deg)';
+            }
+        }
+        
+        function toggleAcordeon(id) {
+            const content = document.getElementById(`content-${id}`);
+            const arrow = document.getElementById(`arrow-${id}`);
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('active');
+                arrow.style.transform = 'rotate(90deg)';
+            }
+        }
+    </script>
+</body>
+</html>
